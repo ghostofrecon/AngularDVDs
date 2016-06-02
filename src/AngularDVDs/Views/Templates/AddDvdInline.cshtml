@@ -1,0 +1,22 @@
+﻿<tr class="form-inline">
+    <td>
+        <input class="form-control" type="text" ng-model="dvdToAdd.DVD_TITLE"/>
+    </td>
+    <td>
+        <select class="form-control" ng-model="dvdToAdd.DVD_GENRE_ID">
+            <option ng-repeat="gen in genres" value="{{gen.GENRE_ID}}">{{gen.GENRE_NAME}}</option>
+        </select>
+    </td>
+    <td>
+        <select class="form-control" ng-model="dvdToAdd.DVD_DIRECTOR_ID">
+            <option ng-repeat="dir in directors" value="{{dir.DIRECTOR_ID}}">{{dir.DIRECTOR_NAME}}</option>
+        </select>
+    </td>
+    <td>
+        <input class="form-control release-date" type="number" ng-model="dvdToAdd.DVD_RELEASE_YEAR"/>
+    </td>
+    <td>
+        <span class="glyphicon glyphicon-remove action-icon text-danger pull-right" title="Save DVD" ng-click="enableAddMode(false)"></span><span class="glyphicon glyphicon-check action-icon text-success pull-right" title="Save DVD" ng-click="saveDVD()"></span>
+    </td>
+
+</tr>
