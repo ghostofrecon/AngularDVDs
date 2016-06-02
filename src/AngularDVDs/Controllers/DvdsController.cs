@@ -89,7 +89,7 @@ namespace AngularDVDs.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            dVD.DVD_ID = Guid.NewGuid();
             _context.DVD.Add(dVD);
             try
             {

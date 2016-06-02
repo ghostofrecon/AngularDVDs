@@ -13,9 +13,12 @@
         $scope.directors = [];
         $scope.genres = [];
         $scope.addMode = false;
-        $scope.enableAddMode = function(state) {
+        $scope.enableAddMode = function (state) {
+            $http.get("api/directors").then(function (response) { $scope.directors = response.data; });
+            $http.get("api/genres").then(function (response) { $scope.genres = response.data; });
             $scope.addMode = state;
         }
+        $scope.jsonDebugging = "";
         $scope.dvdToAdd = {
             DVD_TITLE: "",
             DVD_DIRECTOR_ID: "",
@@ -29,7 +32,7 @@
             $http.get("api/genres").then(function (response) { $scope.genres = response.data; });
             $http.get("api/dvds").then(function (response) { $scope.dvds = response.data });
 
-            console.log("Data Refreshed");
+            console.log("DVDs Refreshed");
 
             if (showToast !== false) {
                 toastr.options = {
@@ -42,14 +45,14 @@
                     "onclick": null,
                     "showDuration": "300",
                     "hideDuration": "500",
-                    "timeOut": "1000",
+                    "timeOut": "3000",
                     "extendedTimeOut": "1000",
                     "showEasing": "swing",
                     "hideEasing": "linear",
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 };
-                toastr["info"]("Data Refreshed.");
+                toastr["info"]("DVD's Refreshed.");
             }
             
         }
@@ -71,6 +74,45 @@
             return "";
         }
         $scope.removeDVD = function (id) {
+            $http.delete("api/dvds/"+id).then(function(response) {
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-bottom-left",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "500",
+                    "timeOut": "3000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+                toastr["success"]("DVD Removed from database.");
+            }, function (response){
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-bottom-left",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "500",
+                    "timeOut": "3000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+                toastr["error"]("DVD Couldn't be removed. Code: " + response.statusCode);
+        });
             for (var i = 0; i < $scope.dvds.length; i++) {
                 if ($scope.dvds[i].DVD_ID === id) {
 
@@ -91,18 +133,97 @@
             $("#AddDvdRow").replaceWith(elem);
         }
         $scope.saveDVD = function () {
-            $scope.dvds.push($scope.dvdToAdd);
-            $scope.enableAddMode(false);
+           
+            var dvd = $scope.dvdToAdd;
             $scope.dvdToAdd = {
+                DVD_ID: "",
                 DVD_TITLE: "",
                 DVD_DIRECTOR_ID: "",
                 DVD_GENRE_ID: "",
                 DVD_RELEASE_YEAR: new Date().getFullYear(),
                 DVD_ADDMOD_Datetime: new Date()
             }
+            
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-bottom-left",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "500",
+                "timeOut": "3000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+            toastr["info"](dvd.DVD_TITLE + " Added to list.");
+
+
+            postDvdtoApi(dvd);
+
+            
+
+            $scope.enableAddMode(false);
         }
         $scope.getJson = function(object) {
             return angular.fromJson(object);
+        }
+        function postDvdtoApi(dvd) {
+            $http.post("api/dvds", dvd)
+                .then(function (response) {
+                    var code = response.statusCode;
+                    console.log("dvd post action succeded: " + code);
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-bottom-left",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "500",
+                        "timeOut": "3000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+                    toastr["success"](dvd.DVD_TITLE + " successfully added to database.");
+                    var id = response.data.DVD_ID;
+                        dvd.DVD_ID = id;
+                    $scope.dvds.push(dvd);
+
+                    },
+                    function (response) {
+                        console.log("DVD Post action failed: " + response.statusCode);
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": true,
+                            "progressBar": true,
+                            "positionClass": "toast-bottom-left",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "500",
+                            "timeOut": "3000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        };
+                        toastr["error"]("Addition of " + dvd.DVD_TITLE + " failed.");
+                        var ind = $scope.dvds.indexOf(dvd);
+                        $scope.slice(ind, 1);
+                    });
         }
     }
 
