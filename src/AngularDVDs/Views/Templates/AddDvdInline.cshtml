@@ -3,12 +3,12 @@
         <input class="form-control" type="text" ng-model="dvdToAdd.DVD_TITLE"/>
     </td>
     <td>
-        <select class="form-control" ng-model="dvdToAdd.DVD_GENRE_ID">
+        <select class="form-control" ng-model="dvdToAdd.DVD_GENRE_ID" id="genreIdSelect" data-toggle="popover" data-trigger="focus" data-content="Field cannot be left blank.">
             <option ng-repeat="gen in genres" value="{{gen.GENRE_ID}}">{{gen.GENRE_NAME}}</option>
         </select>
     </td>
     <td>
-        <select class="form-control" ng-model="dvdToAdd.DVD_DIRECTOR_ID">
+        <select class="form-control" ng-model="dvdToAdd.DVD_DIRECTOR_ID" id="directorIdSelect" data-toggle="popover" data-placement="top" data-content="Field cannot be left blank.">
             <option ng-repeat="dir in directors" value="{{dir.DIRECTOR_ID}}">{{dir.DIRECTOR_NAME}}</option>
         </select>
     </td>
@@ -18,5 +18,9 @@
     <td>
         <span class="glyphicon glyphicon-remove action-icon text-danger pull-right" title="Save DVD" ng-click="enableAddMode(false)"></span><span class="glyphicon glyphicon-check action-icon text-success pull-right" title="Save DVD" ng-click="saveDVD()"></span>
     </td>
-
+    <script>
+    $(function() {
+        $('[data-toggle="popover"]').popover();
+    })
+    </script>
 </tr>

@@ -3,12 +3,33 @@
     <div class="col-lg-3">
         <div class="panel panel-primary" ng-controller="directorListCtrl">
             <div class="panel-heading">
-                <h3 class="panel-title">Recently Added Directors<span class="glyphicon glyphicon-plus pull-right action-icon"></span></h3>
+                <h3 class="panel-title">Recently Added Directors<span class="glyphicon glyphicon-plus pull-right action-icon" data-toggle="modal" href="#addDirectorModal"></span></h3>
             </div>
             <div class="panel-body">
                 <ul>
                     <li ng-repeat="dir in DirectorsNameList" class="repeated-item">{{dir.DIRECTOR_NAME}}</li>
                 </ul>
+            </div>
+            
+            <div class="modal fade" id="addDirectorModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Add Director</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="dirName-addOn">Director Name</span>
+                                <input type="text" class="form-control" placeholder="Username" aria-describedby="dirName-addOn" ng-model="dirToAdd" data-toggle="popover" data-trigger="focus" title="Error" data-content="Director exists in database." id="newDirInput">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" ng-click="addDirector(dirToAdd)">Save changes</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="panel panel-primary" ng-controller="genreListCtrl">

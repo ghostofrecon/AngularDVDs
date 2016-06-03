@@ -84,6 +84,17 @@
         }
         $scope.saveDVD = function () {
            
+            if ($scope.dvdToAdd.DVD_GENRE_ID === "") {
+                $('#genreIdSelect').popover({ placement: "bottom" }).popover("show");
+            }
+            if ($scope.dvdToAdd.DVD_DIRECTOR_ID === "") {
+                $('#directorIdSelect').popover({placement: "top"}).popover("show");
+            }
+            
+            if ($scope.dvdToAdd.DVD_DIRECTOR_ID === "" || $scope.dvdToAdd.DVD_GENRE_ID === "") {
+                return;
+            }
+
             var dvd = $scope.dvdToAdd;
             $scope.dvdToAdd = {
                 DVD_ID: "",

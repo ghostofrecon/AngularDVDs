@@ -89,7 +89,8 @@ namespace AngularDVDs.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            dIRECTOR.DIRECTOR_ID = Guid.NewGuid();
+            dIRECTOR.DIRECTOR_ADDMOD_Datetime = DateTime.Now;
             _context.DIRECTOR.Add(dIRECTOR);
             try
             {
