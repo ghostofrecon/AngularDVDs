@@ -6,6 +6,7 @@
 /// <reference path="js/dvdapp/genrelistctrl.js" />
 /// <reference path="js/site.js" />
 /// <reference path="lib/angular/angular.js" />
+/// <reference path="lib/angular-animate/angular-animate.js" />
 /// <reference path="lib/angular-resource/angular-resource.js" />
 /// <reference path="lib/angular-route/angular-route.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />

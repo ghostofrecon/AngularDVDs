@@ -14,7 +14,8 @@
         // Angular modules 
         'ngRoute',
         "ngTable",
-        "ngResource"
+        "ngResource",
+        "ngAnimate"
 
         // Custom modules 
 

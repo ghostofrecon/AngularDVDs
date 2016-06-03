@@ -1,22 +1,22 @@
 ﻿<div class="container-fluid">
     <div class="col-lg-3">
-        <div class="panel panel-success" ng-controller="directorListCtrl">
+        <div class="panel panel-primary" ng-controller="directorListCtrl">
             <div class="panel-heading">
                 <h3 class="panel-title">Recently Added Directors<span class="glyphicon glyphicon-plus pull-right action-icon"></span></h3>
             </div>
             <div class="panel-body">
                 <ul>
-                    <li ng-repeat="dir in DirectorsNameList">{{dir.DIRECTOR_NAME}}</li>
+                    <li ng-repeat="dir in DirectorsNameList" ng-animate="'animate'">{{dir.DIRECTOR_NAME}}</li>
                 </ul>
             </div>
         </div>
-        <div class="panel panel-success" ng-controller="genreListCtrl">
+        <div class="panel panel-primary" ng-controller="genreListCtrl">
             <div class="panel-heading">
                 <h3 class="panel-title">Recently Added Genres <span class="glyphicon glyphicon-plus pull-right action-icon"></span></h3>
             </div>
             <div class="panel-body">
                 <ul>
-                    <li ng-repeat="gen in genres">{{gen.GENRE_NAME}}</li>
+                    <li ng-repeat="gen in genres" ng-animate="'animate'">{{gen.GENRE_NAME}}</li>
                 </ul>
             </div>
         </div>
@@ -26,7 +26,7 @@
     <div class="col-lg-9">
         <div class="panel panel-primary" ng-controller="dvdListCtrl">
             <div class="panel-heading">
-                <h3 class="panel-title">DVD List <span class="glyphicon glyphicon-refresh pull-right action-icon" ng-click="refreshData()"></span></h3>
+                <h3 class="panel-title form-inline">DVD List <span class="label-primary" style="margin-left: 40px;">Filter:  <input class="form-control" style="width:300px" placeholder="Search Title" ng-model="dvdSearch" /> </span> <span class="glyphicon glyphicon-refresh action-icon" style="left:40%" ng-click="refreshData()"></span></h3>
             </div>
 
             <div class="panel-body">
@@ -41,7 +41,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="dvd in dvds">
+                    <tr class="tr" ng-animate="'animate'" ng-repeat="dvd in dvds | filter: dvdSearch">
                         <td>{{dvd.DVD_TITLE}}</td>
                         <td>{{getGenre(dvd.DVD_GENRE_ID).GENRE_NAME}}</td>
                         <td>{{getDirector(dvd.DVD_DIRECTOR_ID).DIRECTOR_NAME}}</td>
@@ -55,7 +55,7 @@
                         <td></td>
                         <td><span class="glyphicon glyphicon-plus text-success action-icon pull-right" ng-hide="addMode" ng-click="enableAddMode(true)"></span></td>
                     </tr>
-                    <tr add-dvd-inline ng-show="addMode"></tr>
+                    <tr add-dvd-inline ng-show="addMode" ></tr>
                     </tbody>
                 </table>
                

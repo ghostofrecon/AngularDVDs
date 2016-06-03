@@ -4,6 +4,7 @@
     angular
         .module('dvdApp')
         .directive("addDvdInline", addDvdInline)
+        .animation('.tr', animateTableRow)
         .controller('dvdListCtrl', dvdListCtrl);
 
     dvdListCtrl.$inject = ["$scope", "$http", "$compile"];
@@ -12,6 +13,7 @@
         $scope.dvds = [];
         $scope.directors = [];
         $scope.genres = [];
+        $scope.dvdSearch = "";
         $scope.addMode = false;
         $scope.enableAddMode = function (state) {
             $http.get("api/directors").then(function (response) { $scope.directors = response.data; });
@@ -31,8 +33,8 @@
             $http.get("api/directors").then(function (response) { $scope.directors = response.data; });
             $http.get("api/genres").then(function (response) { $scope.genres = response.data; });
             $http.get("api/dvds").then(function (response) { $scope.dvds = response.data });
-
-            console.log("DVDs Refreshed");
+            $scope.dvdSearch = "";
+            //console.log("DVDs Refreshed");
 
             if (showToast !== false) {
                 toastr.options = {
@@ -241,4 +243,15 @@
             }
         }
     }
-})();
+    function animateTableRow() {
+        return {
+            beforeAddClass: function (element) {
+                jQuery(element).css({ 'line-height': 0 });
+            },
+            enter: function (element, done, memo) {
+                jQuery(element).animate({ 'line-height': '20px' },
+                  function () { done(); });
+            }
+        };
+    }
+})(window);
