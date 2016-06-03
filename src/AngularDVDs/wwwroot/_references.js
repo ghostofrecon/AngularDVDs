@@ -4,6 +4,7 @@
 /// <reference path="js/dvdapp/dvdapp.js" />
 /// <reference path="js/dvdapp/dvdlistctrl.js" />
 /// <reference path="js/dvdapp/genrelistctrl.js" />
+/// <reference path="js/dvdapp/services/factory.js" />
 /// <reference path="js/site.js" />
 /// <reference path="lib/angular/angular.js" />
 /// <reference path="lib/angular-animate/angular-animate.js" />

@@ -4,12 +4,11 @@
     angular
         .module('dvdApp')
         .directive("addDvdInline", addDvdInline)
-        .animation('.tr', animateTableRow)
         .controller('dvdListCtrl', dvdListCtrl);
 
-    dvdListCtrl.$inject = ["$scope", "$http", "$compile"];
+    dvdListCtrl.$inject = ["$scope", "$http", "$compile", "toastFactory"];
 
-    function dvdListCtrl($scope, $http, $compile) {
+    function dvdListCtrl($scope, $http, $compile, toastFactory) {
         $scope.dvds = [];
         $scope.directors = [];
         $scope.genres = [];
@@ -35,26 +34,9 @@
             $http.get("api/dvds").then(function (response) { $scope.dvds = response.data });
             $scope.dvdSearch = "";
             //console.log("DVDs Refreshed");
-
+            
             if (showToast !== false) {
-                toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": true,
-                    "positionClass": "toast-bottom-left",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "500",
-                    "timeOut": "3000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                };
-                toastr["info"]("DVD's Refreshed.");
+                toastFactory.showToast("info", 3000, "DVD Data Refreshed");
             }
             
         }
@@ -77,44 +59,10 @@
         }
         $scope.removeDVD = function (id) {
             $http.delete("api/dvds/"+id).then(function(response) {
-                toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": true,
-                    "positionClass": "toast-bottom-left",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "500",
-                    "timeOut": "3000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                };
-                toastr["success"]("DVD Removed from database.");
+                toastFactory.showToast("success", 3000, "DVD removed from database");
             }, function (response){
-                toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": true,
-                    "positionClass": "toast-bottom-left",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "500",
-                    "timeOut": "3000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                };
-                toastr["error"]("DVD Couldn't be removed. Code: " + response.statusCode);
-        });
+                toastFactory.showToast("error", 3000, "DVD couldn't be removed: Code: " + response.statusCode);
+            });
             for (var i = 0; i < $scope.dvds.length; i++) {
                 if ($scope.dvds[i].DVD_ID === id) {
 
@@ -145,31 +93,8 @@
                 DVD_RELEASE_YEAR: new Date().getFullYear(),
                 DVD_ADDMOD_Datetime: new Date()
             }
-            
-            toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": true,
-                "positionClass": "toast-bottom-left",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "500",
-                "timeOut": "3000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            };
-            toastr["info"](dvd.DVD_TITLE + " Added to list.");
-
-
+            toastFactory.showToast("info", 3000, dvd.DVD_TITLE + " added to list.");
             postDvdtoApi(dvd);
-
-            
-
             $scope.enableAddMode(false);
         }
         $scope.getJson = function(object) {
@@ -180,24 +105,7 @@
                 .then(function (response) {
                     var code = response.statusCode;
                     console.log("dvd post action succeded: " + code);
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": true,
-                        "positionClass": "toast-bottom-left",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "500",
-                        "timeOut": "3000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    };
-                    toastr["success"](dvd.DVD_TITLE + " successfully added to database.");
+                    toastFactory.showToast("success", 3000, dvd.DVD_TITLE + " successfully added to database.");
                     var id = response.data.DVD_ID;
                         dvd.DVD_ID = id;
                     $scope.dvds.push(dvd);
@@ -205,24 +113,7 @@
                     },
                     function (response) {
                         console.log("DVD Post action failed: " + response.statusCode);
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": true,
-                            "progressBar": true,
-                            "positionClass": "toast-bottom-left",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "500",
-                            "timeOut": "3000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        };
-                        toastr["error"]("Addition of " + dvd.DVD_TITLE + " failed.");
+                        toastFactory.showToast("error", 3000, "Addition of " + dvd.DVD_TITLE + " failed.");
                         var ind = $scope.dvds.indexOf(dvd);
                         $scope.slice(ind, 1);
                     });
@@ -235,23 +126,9 @@
             restrict: "AE",
             replace: true,
             scope: true,
-            link: function (scope) {
-                scope.dvdToAdd = $scope.dvds;
-                scope.directors = $scope.directors;
-                scope.genres = $scope.genres;
-                
+            link: function () {
             }
         }
     }
-    function animateTableRow() {
-        return {
-            beforeAddClass: function (element) {
-                jQuery(element).css({ 'line-height': 0 });
-            },
-            enter: function (element, done, memo) {
-                jQuery(element).animate({ 'line-height': '20px' },
-                  function () { done(); });
-            }
-        };
-    }
+   
 })(window);

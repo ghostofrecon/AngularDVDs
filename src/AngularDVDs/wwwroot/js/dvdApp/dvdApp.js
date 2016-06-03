@@ -10,16 +10,15 @@
 (function () {
     'use strict';
 
-    angular.module('dvdApp', [
+    angular.module('dvdApp',
+    [
         // Angular modules 
         'ngRoute',
         "ngTable",
-        "ngResource",
-        "ngAnimate"
+        "ngResource"
 
         // Custom modules 
 
         // 3rd Party Modules
-        
     ]);
 })();

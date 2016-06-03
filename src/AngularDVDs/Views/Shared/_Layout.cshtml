@@ -7,17 +7,19 @@
 
     <environment names="Development">
         <script src="~/lib/angular/angular.js"></script>
-        <script src="~/lib/angular-animate/angular-animate.js"></script>
+        @*<script src="~/lib/angular-animate/angular-animate.js"></script>*@
+
         <script src="~/lib/ng-table/dist/ng-table.js"></script>
         <script src="~/lib/angular-route/angular-route.js"></script>
         <script src="~/lib/angular-resource/angular-resource.js"></script>
         <script src="~/js/dvdApp/dvdApp.js"></script>
+        <script src="~/js/dvdApp/services/toastFactory.js"></script>
         <script src="~/js/dvdApp/dvdListCtrl.js"></script>
         <script src="~/js/dvdApp/directorListCtrl.js"></script>
         <script src="~/js/dvdApp/genreListCtrl.js"></script>
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
-        <link rel="stylesheet" href="~/css/site.css"/>
-        <link href="~/lib/ng-table/dist/ng-table.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/lib/ng-table/dist/ng-table.css" rel="stylesheet" />
         <link href="~/lib/toastr/toastr.css" rel="stylesheet" />
     </environment>
     <environment names="Staging,Production">
@@ -49,11 +51,11 @@
             </div>
         </div>
     </div>
-    <div class="container body-content hidden" >
+    <div class="container body-content hidden">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2016 - AngularDVDs</p>
+            <p>&copy; 2016 - An ASP.NET Core, MVC, WebAPI2, Bootstrap and Angular Project by David Campbell</p>
         </footer>
     </div>
 
@@ -62,8 +64,8 @@
         <script src="~/lib/toastr/toastr.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
-        
-        
+
+
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
