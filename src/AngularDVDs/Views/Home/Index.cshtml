@@ -3,12 +3,13 @@
     <div class="col-lg-3">
         <div class="panel panel-primary" ng-controller="directorListCtrl">
             <div class="panel-heading">
-                <h3 class="panel-title">Recently Added Directors<span class="glyphicon glyphicon-plus pull-right action-icon" data-toggle="modal" href="#addDirectorModal"></span></h3>
+                <h3 class="panel-title">Recently Added Directors <span class="pull-right glyphicon glyphicon-refresh action-icon" ng-click="reactivate()"></span></h3>
             </div>
             <div class="panel-body">
                 <ul>
                     <li ng-repeat="dir in DirectorsNameList | limitTo: 3" class="repeated-item">{{dir.DIRECTOR_NAME}}</li>
                 </ul>
+                <span class="glyphicon glyphicon-plus pull-right action-icon text-success" data-toggle="modal" href="#addDirectorModal"></span>
             </div>
             
             <div class="modal fade" id="addDirectorModal">
