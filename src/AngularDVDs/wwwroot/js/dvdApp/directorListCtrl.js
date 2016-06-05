@@ -12,7 +12,10 @@
         $scope.DirectorsNameList = [];
         $scope.dirToAdd = "";
         $scope.directors = [];
-        $scope.reactivate = activate();
+        $scope.reactivate = function() {
+            $http.get("api/directors").then(function (response) { $scope.DirectorsNameList = response.data.sort(function (a, b) { return (a.DIRECTOR_ADDMOD_Datetime < b.DIRECTOR_ADDMOD_Datetime) ? 1 : ((a.DIRECTOR_ADDMOD_Datetime > b.DIRECTOR_ADDMOD_Datetime) ? -1 : 0) }) });
+            toastFactory.showToast("info", 3000, "Directors refreshed");
+        }
         $scope.addDirector = function (newDir) {
             if ($scope.DirectorsNameList) {
                 for (var i = 0; i < $scope.DirectorsNameList.length; i++) {
