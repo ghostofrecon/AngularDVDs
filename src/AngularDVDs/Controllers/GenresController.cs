@@ -89,14 +89,16 @@ namespace AngularDVDs.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            gENRE.GENRE_ID = Guid.NewGuid();
+            gENRE.GENRE_ADDMOD_Datetime = DateTime.Now;
             _context.GENRE.Add(gENRE);
             try
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException ex)
             {
+                var exception = ex;
                 if (GENREExists(gENRE.GENRE_ID))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);

@@ -97,3 +97,7 @@ textarea {
   from { opacity:1; }
   to { opacity:0; }
 }
+.stdAddonWidth {
+    width: 65px;
+    max-width: 65px;
+}

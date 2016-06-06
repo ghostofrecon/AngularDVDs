@@ -17,5 +17,15 @@ namespace AngularDVDs.Controllers
         {
             return this.PartialView();
         }
+
+        public IActionResult AddDirectorModal()
+        {
+            return this.PartialView();
+        }
+
+        public IActionResult AddGenreModal()
+        {
+            return this.PartialView();
+        }
     }
 }

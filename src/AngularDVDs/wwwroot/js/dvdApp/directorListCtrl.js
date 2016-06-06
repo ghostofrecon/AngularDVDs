@@ -3,9 +3,23 @@
 
     angular
         .module('dvdApp')
+        .directive('addDirectorModal', addDirectorModal)
         .controller('directorListCtrl', directorListCtrl);
 
     directorListCtrl.$inject = ['$scope', '$http', 'toastFactory']; 
+
+
+    function addDirectorModal() {
+        return {
+            templateUrl: "templates/AddDirectorModal",
+            restrict: "AE",
+            replace: true,
+            scope: true,
+            link: function() {
+                
+            }
+    }
+    }
 
     function directorListCtrl($scope, $http, toastFactory) {
         $scope.title = 'directorListCtrl';
@@ -44,4 +58,6 @@
             //$scope.DirectorsNameList = $scope.directors.slice(0, 3)
         }
     }
+
+    
 })();

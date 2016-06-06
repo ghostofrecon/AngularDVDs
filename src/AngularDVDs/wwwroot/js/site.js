@@ -2,8 +2,16 @@
 $(function() {
     $(".body-content").removeClass("hidden");
     $("#addDirectorModal")
-                .on("hidden.bs.modal",
-                    function () {
-                        $("#addDirectorModal input").val("");
-                    });
-})
+        .on("hidden.bs.modal",
+            function() {
+                $("#addDirectorModal input").val("");
+            });
+    $('#addGenreModal')
+        .on("hidden.bs.modal",
+            function() {
+                $("newGenreNameInput").val("");
+                $("newGenreDescInput").val("");
+
+            });
+
+});

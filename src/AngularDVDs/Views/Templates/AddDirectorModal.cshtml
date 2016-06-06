@@ -1,0 +1,20 @@
+﻿<div class="modal fade" id="addDirectorModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add Director</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <span class="input-group-addon stdAddonWidth" id="dirName-addOn">Name</span>
+                    <input type="text" class="form-control" placeholder="Director Name" aria-describedby="dirName-addOn" ng-model="dirToAdd" data-toggle="popover" data-trigger="focus" data-content="Director exists in database." id="newDirInput">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="addDirector(dirToAdd)">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

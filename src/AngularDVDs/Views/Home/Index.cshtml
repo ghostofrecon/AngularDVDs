@@ -11,36 +11,19 @@
                 </ul>
                 <span class="glyphicon glyphicon-plus pull-right action-icon text-success" data-toggle="modal" href="#addDirectorModal"></span>
             </div>
-            
-            <div class="modal fade" id="addDirectorModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title">Add Director</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="dirName-addOn">Director Name</span>
-                                <input type="text" class="form-control" placeholder="Username" aria-describedby="dirName-addOn" ng-model="dirToAdd" data-toggle="popover" data-trigger="focus" data-content="Director exists in database." id="newDirInput">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" ng-click="addDirector(dirToAdd)">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            <div add-director-modal=""></div>
         </div>
         <div class="panel panel-primary" ng-controller="genreListCtrl">
             <div class="panel-heading">
-                <h3 class="panel-title">Recently Added Genres <span class="glyphicon glyphicon-plus pull-right action-icon"></span></h3>
+                <h3 class="panel-title">Recently Added Genres<span class="pull-right glyphicon glyphicon-refresh action-icon" ng-click="refreshGenres()"></span></h3>
             </div>
             <div class="panel-body">
                 <ul>
                     <li ng-repeat="gen in genres" class="repeated-item">{{gen.GENRE_NAME}}</li>
                 </ul>
+                <span class="glyphicon glyphicon-plus pull-right action-icon text-success" data-toggle="modal" href="#addGenreModal"></span>
+                <add-genre-modal></add-genre-modal>
             </div>
         </div>
     </div>
