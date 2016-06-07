@@ -8,6 +8,14 @@
     dvdListCtrl.$inject = ["$scope", "$http", "$compile", "toastFactory"];
 
     function dvdListCtrl($scope, $http, $compile, toastFactory) {
+        var self = this;
+        //self.titles = [];
+        //self.querySearch = querySearch;
+        //self.selectedItemChange = selectedItemChange;
+        //self.selectedTextChange = selectedTextChange;
+        //function querySearch(query) {
+        //    var results = query?
+        //}
         $scope.dvds = [];
         $scope.directors = [];
         $scope.genres = [];
@@ -53,29 +61,12 @@
                 $scope.dvds = response.data;
             });
             $scope.dvdSearch = "";
-            //console.log("DVDs Refreshed");
 
             if (showToast !== false) {
                 toastFactory.showToast("info", 3000, "DVD Data Refreshed");
             }
         };
         $scope.refreshData(false);
-        $scope.getDirector = function (id) {
-            for (var i = 0; i < $scope.directors.length; i++) {
-                if ($scope.directors[i].DIRECTOR_ID === id) {
-                    return $scope.directors[i];
-                }
-            }
-            return "";
-        };
-        $scope.getGenre = function (id) {
-            for (var i = 0; i < $scope.genres.length; i++) {
-                if ($scope.genres[i].GENRE_ID === id) {
-                    return $scope.genres[i];
-                }
-            }
-            return "";
-        };
         $scope.removeDVD = function (id) {
             $http['delete']("api/dvds/" + id).then(function (response) {
                 toastFactory.showToast("success", 3000, "DVD removed from database");

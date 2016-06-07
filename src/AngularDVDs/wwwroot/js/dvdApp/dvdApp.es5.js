@@ -13,7 +13,7 @@
 
     angular.module('dvdApp', [
     // Angular modules
-    'ngRoute', "ngTable", "ngResource"
+    'ngRoute', "ngTable", "ngResource", "ui.select2", 'dvdApp.toast', "ngMaterial"
 
     // Custom modules
 

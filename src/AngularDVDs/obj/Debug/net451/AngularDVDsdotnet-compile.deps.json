@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETFramework,Version=v4.5.1/",
-    "signature": "a38ecde7c4a575f0f4cc451a0924050714e1e0cc"
+    "signature": "4255f5bacfac93cf734f7bb4f758938fe99a911c"
   },
   "compilationOptions": {
     "defines": [
@@ -37,35 +37,35 @@
           "Microsoft.Extensions.Logging.Console": "1.0.0-rc2-final",
           "Microsoft.Extensions.Logging.Debug": "1.0.0-rc2-final",
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc2-final",
-          "angularjs.TypeScript.DefinitelyTyped": "6.1.6",
-          "AngularJS.Core": "1.5.5",
-          "AngularJS.Route": "1.5.5",
-          "AngularJS.Animate": "1.5.5",
-          "AngularJS.Resource": "1.5.5",
           "jquery.TypeScript.DefinitelyTyped": "3.0.6",
-          "toastr.TypeScript.DefinitelyTyped": "0.3.1"
+          "toastr.TypeScript.DefinitelyTyped": "0.3.1",
+          "AngularJS.Animate": "1.5.6",
+          "AngularJS.Core": "1.5.6",
+          "AngularJS.Resource": "1.5.6",
+          "AngularJS.Route": "1.5.6",
+          "angularjs.TypeScript.DefinitelyTyped": "6.1.8"
         },
         "compile": {
           "AngularDVDs.exe": {}
         }
       },
-      "AngularJS.Animate/1.5.5": {
+      "AngularJS.Animate/1.5.6": {
         "dependencies": {
-          "AngularJS.Core": "1.5.5"
+          "AngularJS.Core": "1.5.6"
         }
       },
-      "AngularJS.Core/1.5.5": {},
-      "AngularJS.Resource/1.5.5": {
+      "AngularJS.Core/1.5.6": {},
+      "AngularJS.Resource/1.5.6": {
         "dependencies": {
-          "AngularJS.Core": "1.5.5"
+          "AngularJS.Core": "1.5.6"
         }
       },
-      "AngularJS.Route/1.5.5": {
+      "AngularJS.Route/1.5.6": {
         "dependencies": {
-          "AngularJS.Core": "1.5.5"
+          "AngularJS.Core": "1.5.6"
         }
       },
-      "angularjs.TypeScript.DefinitelyTyped/6.1.6": {
+      "angularjs.TypeScript.DefinitelyTyped/6.1.8": {
         "dependencies": {
           "jquery.TypeScript.DefinitelyTyped": "3.0.6"
         }
@@ -1728,35 +1728,35 @@
           "Microsoft.Extensions.Logging.Console": "1.0.0-rc2-final",
           "Microsoft.Extensions.Logging.Debug": "1.0.0-rc2-final",
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc2-final",
-          "angularjs.TypeScript.DefinitelyTyped": "6.1.6",
-          "AngularJS.Core": "1.5.5",
-          "AngularJS.Route": "1.5.5",
-          "AngularJS.Animate": "1.5.5",
-          "AngularJS.Resource": "1.5.5",
           "jquery.TypeScript.DefinitelyTyped": "3.0.6",
-          "toastr.TypeScript.DefinitelyTyped": "0.3.1"
+          "toastr.TypeScript.DefinitelyTyped": "0.3.1",
+          "AngularJS.Animate": "1.5.6",
+          "AngularJS.Core": "1.5.6",
+          "AngularJS.Resource": "1.5.6",
+          "AngularJS.Route": "1.5.6",
+          "angularjs.TypeScript.DefinitelyTyped": "6.1.8"
         },
         "runtime": {
           "AngularDVDs.exe": {}
         }
       },
-      "AngularJS.Animate/1.5.5": {
+      "AngularJS.Animate/1.5.6": {
         "dependencies": {
-          "AngularJS.Core": "1.5.5"
+          "AngularJS.Core": "1.5.6"
         }
       },
-      "AngularJS.Core/1.5.5": {},
-      "AngularJS.Resource/1.5.5": {
+      "AngularJS.Core/1.5.6": {},
+      "AngularJS.Resource/1.5.6": {
         "dependencies": {
-          "AngularJS.Core": "1.5.5"
+          "AngularJS.Core": "1.5.6"
         }
       },
-      "AngularJS.Route/1.5.5": {
+      "AngularJS.Route/1.5.6": {
         "dependencies": {
-          "AngularJS.Core": "1.5.5"
+          "AngularJS.Core": "1.5.6"
         }
       },
-      "angularjs.TypeScript.DefinitelyTyped/6.1.6": {
+      "angularjs.TypeScript.DefinitelyTyped/6.1.8": {
         "dependencies": {
           "jquery.TypeScript.DefinitelyTyped": "3.0.6"
         }
@@ -3235,30 +3235,30 @@
       "serviceable": false,
       "sha512": ""
     },
-    "AngularJS.Animate/1.5.5": {
+    "AngularJS.Animate/1.5.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-nzgtllKZwRNNIftpvklIkRDUiGyQfIgdhoHg6+5tc/+2g9cLa6SWn01UFJj05wssy3pGh37g4DJs9JPM67ICHA=="
+      "sha512": "sha512-FFUQx1qtnLwgf9tcaSYatFSCsUo+aKBZWhvN9T5CRwzzmItSuwlNbEpPYy2Yn40Cr/tmYzlIdyjXTCXYQ1bsMw=="
     },
-    "AngularJS.Core/1.5.5": {
+    "AngularJS.Core/1.5.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-d0oO6Rln3gOW520Cw8Q+KiDk654C23HHJwsuaOnLku1Lfc6Loacfo6hmg5BK5lXeGpBLUmPtv5pi7f1RJ/Fj2w=="
+      "sha512": "sha512-3hS3NyPd9U71MU127d4ZKmF8gFcDJZuauJ6N7KYZnxGvcBZ7pf1r9luGIQpf7U7/v0bhjY4bLIRP73Pr0CQefA=="
     },
-    "AngularJS.Resource/1.5.5": {
+    "AngularJS.Resource/1.5.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-vu8cTUdowjRxnwYbFOuoAJbswlLWxwuauisHmtkKeFX7PAoLLJN3EKSFXocsO5QkyO4lHAdwQcjgtEMQfbvHNg=="
+      "sha512": "sha512-z51fovZ5FAj97U/Cckh5uLCh5v8i2bvj7qR6b3dpBKwNPikAsRUVTUs9oCvEVQjUcP5+IoK2+DxsVTaaNT0kEw=="
     },
-    "AngularJS.Route/1.5.5": {
+    "AngularJS.Route/1.5.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Uz8iuLjtABMpR6gvJ3e+xRCPSIpZ9BwUWgAs2anTqa0+3P+F+2V/L4pnN+jdWKquWy2oWsAMBSVpya/IAjge6Q=="
+      "sha512": "sha512-UEQ2aVkHCxcUnjEXDQlxT6qwC/NMnIpQkqlUmx26ld9mSIPrZB65bYnk96sQe+oMSn/A6Dd83kZNW+3fDohCIQ=="
     },
-    "angularjs.TypeScript.DefinitelyTyped/6.1.6": {
+    "angularjs.TypeScript.DefinitelyTyped/6.1.8": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ASNNBoRbSKK/ObJeuTJFPHdgo/wIkrRCmNmFZ+CzxG3xMQmQjrySgJ+mGzaLtZrnUSTvVp87x3YZGts9qOQTSA=="
+      "sha512": "sha512-tlJul8I7OzS1sDbB6MNypqVxki34e780+8C0NY3iWl6zMTnf4N+rJCN7QgSxFGc3mhMdTWQpv8KFvdUNYmlCUQ=="
     },
     "EntityFramework.Commands/7.0.0-rc1-final": {
       "type": "package",

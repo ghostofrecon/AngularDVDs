@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace AngularDVDs.EF
+namespace AngularDVDs.ef
 {
     public partial class dvdContext : DbContext
     {

@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AngularDVDs.EF;
+using AngularDVDs.ef;
 
 namespace AngularDVDs.Controllers
 {
     using System.Linq.Expressions;
+
+    using AngularDVDs.ef;
 
     [Produces("application/json")]
     [Route("api/Dvds")]
@@ -22,26 +24,32 @@ namespace AngularDVDs.Controllers
             _context = context;
         }
 
-        private object preparedDVD(DVD x)
+        private IEnumerable<object> preparedDVD(List<DVD> dvd)
         {
-            return
-                new
-                    {
-                        x.DVD_ID,
-                        x.DVD_TITLE,
-                        x.DVD_DIRECTOR_ID,
-                        x.DVD_GENRE_ID,
-                        x.DVD_RELEASE_YEAR,
-                        x.DVD_ADDMOD_Datetime,
-                        x.DVD_GENRE.GENRE_NAME,
-                        x.DVD_DIRECTOR.DIRECTOR_NAME
-                    };
+            return dvd.Select(x => new
+            {
+                x.DVD_ID,
+                x.DVD_TITLE,
+                x.DVD_DIRECTOR_ID,
+                x.DVD_GENRE_ID,
+                x.DVD_RELEASE_YEAR,
+                x.DVD_ADDMOD_Datetime,
+                this._context.DIRECTOR.Single(y => y.DIRECTOR_ID == x.DVD_DIRECTOR_ID).DIRECTOR_NAME,
+                this._context.GENRE.Single(y => y.GENRE_ID == x.DVD_GENRE_ID).GENRE_NAME
+
+            }).ToList();
         }
         // GET: api/Dvds
         [HttpGet]
         public IEnumerable<object> GetDVD()
         {
-            return _context.DVD.Select(x => preparedDVD(x));
+            if (_context.DVD.Any())
+            {
+                var result = this._context.DVD.ToList();
+
+                return this.preparedDVD(result);
+            }
+            return null;
         }
 
         // GET: api/Dvds/5
@@ -60,8 +68,9 @@ namespace AngularDVDs.Controllers
             {
                 return NotFound();
             }
-
-            return Ok(preparedDVD(dVD));
+            List<DVD> dvdList = new List<DVD>();
+            dvdList.Add(dVD);
+            return Ok(this.preparedDVD(dvdList).Single());
         }
 
         // PUT: api/Dvds/5

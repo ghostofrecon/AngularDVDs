@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-AngularSite1-d6cd0df3-e4e1-4c2e-abe1-692ceec995de",
 
   "dependencies": {
@@ -38,13 +38,13 @@
       "version": "1.0.0-preview1-final",
       "type": "build"
     },
-    "angularjs.TypeScript.DefinitelyTyped": "6.1.6",
-    "AngularJS.Core": "1.5.5",
-    "AngularJS.Route": "1.5.5",
-    "AngularJS.Animate": "1.5.5",
-    "AngularJS.Resource": "1.5.5",
     "jquery.TypeScript.DefinitelyTyped": "3.0.6",
-    "toastr.TypeScript.DefinitelyTyped": "0.3.1"  },
+    "toastr.TypeScript.DefinitelyTyped": "0.3.1",
+    "AngularJS.Animate": "1.5.6",
+    "AngularJS.Core": "1.5.6",
+    "AngularJS.Resource": "1.5.6",
+    "AngularJS.Route": "1.5.6",
+    "angularjs.TypeScript.DefinitelyTyped": "6.1.8"},
 
   "tools": {
     "Microsoft.AspNetCore.Razor.Tools": {

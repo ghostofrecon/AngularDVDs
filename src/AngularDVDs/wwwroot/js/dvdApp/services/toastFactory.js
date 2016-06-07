@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('dvdApp')
+        .module('dvdApp.toast', [])
         .factory('toastFactory', factory);
 
     function factory() {

@@ -3,7 +3,7 @@
 (function () {
     'use strict';
 
-    angular.module('dvdApp').factory('toastFactory', factory);
+    angular.module('dvdApp.toast', []).factory('toastFactory', factory);
 
     function factory() {
         var service = {

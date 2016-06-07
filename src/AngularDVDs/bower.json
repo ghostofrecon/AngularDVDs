@@ -6,8 +6,22 @@
     "jquery": "2.2.0",
     "jquery-validation": "1.14.0",
     "jquery-validation-unobtrusive": "3.2.6",
-    "angular": "1.5.5",
+    "angular": "1.5.6",
     "ng-table": "0.8.3",
-    "toastr" : "2.1.2" 
+    "toastr": "2.1.2",
+    "angular-animate": "1.5.6",
+    "angular-resource": "1.5.6",
+    "angular-route": "1.5.6",
+    "angular-smart-table": "2.1.8",
+    "font-awesome": "4.6.3",
+    "angular-ui-select2": "0.0.5",
+    "select2": "3.4.8",
+    "select2-bootstrap-css": "1.4.6",
+    "angular-aria": "1.5.6",
+    "angular-messages": "1.5.6", 
+    "angular-material" : "1.1.0-rc2" 
+  },
+  "resolutions": {
+    "angular": "^1.0.0"
   }
 }

@@ -15,7 +15,10 @@
         // Angular modules 
         'ngRoute',
         "ngTable",
-        "ngResource"
+        "ngResource",
+        "ui.select2",
+        'dvdApp.toast',
+        "ngMaterial"
 
         // Custom modules 
 

@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AngularDVDs.EF;
+using AngularDVDs.ef;
 
 namespace AngularDVDs.Controllers
 {
+    using AngularDVDs.ef;
+
     [Produces("application/json")]
     [Route("api/DIRECTORs")]
     public class DIRECTORsController : Controller

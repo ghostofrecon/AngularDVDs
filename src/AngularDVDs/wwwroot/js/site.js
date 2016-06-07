@@ -13,5 +13,6 @@ $(function() {
                 $("newGenreDescInput").val("");
 
             });
+    $("#genreIdSelect").select2();
 
 });

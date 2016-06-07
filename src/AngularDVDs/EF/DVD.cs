@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AngularDVDs.EF
+namespace AngularDVDs.ef
 {
     public partial class DVD
     {

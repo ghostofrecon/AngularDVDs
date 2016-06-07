@@ -57,7 +57,7 @@ namespace AngularDVDs
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.AddEntityFrameworkSqlServer().AddDbContext<EF.dvdContext>(
+            services.AddEntityFrameworkSqlServer().AddDbContext<ef.dvdContext>(
                 options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
         }
 

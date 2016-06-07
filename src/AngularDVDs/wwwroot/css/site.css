@@ -101,3 +101,46 @@ textarea {
     width: 65px;
     max-width: 65px;
 }
+input {
+    background-color: #272b30;
+    color:lightgray
+}
+
+.ui-menu-item .imdbTitle{
+    font-size: 0.9em;
+    font-weight: bold;
+}
+.ui-menu-item .imdbCast{
+    font-size: 0.7em;
+    font-style: italic;
+    line-height: 110%;
+    color: #666;
+}
+.ui-menu-item .imdbImage{
+    float: left;
+    margin-right: 5px;
+}
+.ui-menu-item .clear{
+    clear: both;
+}
+.select2-results .select2-highlighted {
+  background-color: #c8c8c8!important;
+  color: #272b30!important;
+}
+.select2-container .select2-choices .select2-search-field input,
+.select2-container .select2-choice,
+.select2-container .select2-choices {
+  background: none;
+  padding: 0;
+  border-color: black;
+  border-radius: 4px;
+  color: lightgray!important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #272b30!important;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false)!important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)!important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)!important;
+}
+.select2-drop-active {
+    border-color: #272b30!important;
+}

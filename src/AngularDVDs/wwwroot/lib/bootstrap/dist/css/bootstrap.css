@@ -2559,7 +2559,7 @@ output {
   font-size: 14px;
   line-height: 1.42857143;
   color: #c8c8c8;
-  background-color: #272b30;
+  background-color: #272b30!important;
   background-image: none;
   border: 1px solid #000000;
   border-radius: 4px;
