@@ -1,0 +1,51 @@
+﻿@*<a data-toggle="modal" href="#fullDirectorListModal">Trigger modal</a>*@
+<div class="modal fade" id="fullDirectorListModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header form-inline">
+                
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Directors<span class="input-group" style="margin-left: 20px">
+    <span class="input-group-addon stdAddonWidth" id="Filter-Addon">Filter</span>
+    <input type="text" class="form-control" aria-describedby="#filteraddon" ng-model="nameFilter" />
+</span> </h4>
+                
+            </div>
+            <div class="modal-body">
+                @*<div class="input-group">
+                    <span class="input-group-addon stdAddonWidth" id="Filter-Addon">Filter</span>
+                    <input type="text" class="form-control" aria-describedby="#filteraddon" ng-model="nameFilter" />
+                </div>
+                &nbsp;*@
+                <table class="table table-condensed table-stripped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="action-icon" ng-click="orderList('DIRECTOR_NAME')">
+                                Name
+                                <span class="glyphicon glyphicon-arrow-up" ng-show="dirOrderColumn === 'DIRECTOR_NAME'"></span>
+                                <span class="glyphicon glyphicon-arrow-down" ng-show="dirOrderColumn === '-DIRECTOR_NAME'"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dir in DirectorsNameList | filter: nameFilter | startFrom:currentPage * 10 | limitTo: 10 | orderBy: dirOrderColumn" class="repeated-item">
+                            <td>
+                                {{dir.DIRECTOR_NAME}}
+                            </td>
+                            <td><span class="glyphicon glyphicon-remove text-danger action-icon" title="Remove" ng-click="removeDirector(dir.DIRECTOR_ID)"></span></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><span class="glyphicon glyphicon-plus text-success action-icon" title="Add DVD"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="pull-left glyphicon glyphicon-arrow-left" ng-class="(currentPage >= DirectorsNameList.length/10 -1) ? 'hidden' : 'action-icon text-primary' "></span>
+                <span class="pull-right glyphicon glyphicon-arrow-right action-icon text-primary"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

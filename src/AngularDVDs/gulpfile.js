@@ -12,6 +12,10 @@ var webroot = "./wwwroot/";
 var paths = {
     js: webroot + "js/**/*.js",
     minJs: webroot + "js/**/*.min.js",
+    angularWebroot: "js/dvdApp/*.js",
+    angularMinWebroot: "js/dvdApp/*.min.js",
+    angularServices: "js/dvdApp/services/*.js",
+    angularMinServices: "js/dvdApp/services/*.min.js",
     css: webroot + "css/**/*.css",
     minCss: webroot + "css/**/*.min.css",
     concatJsDest: webroot + "js/site.min.js",

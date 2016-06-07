@@ -14,6 +14,17 @@
         $scope.genres = [];
         $scope.dvdSearch = "";
         $scope.addMode = false;
+        $scope.orderColumn = "-DVD_ADDMOD_Datetime";
+        $scope.orderTableBy = function(column) {
+            switch ($scope.orderColumn) {
+                case column:
+                    $scope.orderColumn = "-" + column;
+                    break;
+                default:
+                    $scope.orderColumn = column;
+                    break;
+            }
+        }
         $scope.enableAddMode = function (state) {
             $http.get("api/directors").then(function (response) { $scope.directors = response.data; });
             $http.get("api/genres").then(function (response) { $scope.genres = response.data; });
@@ -97,7 +108,6 @@
 
             var dvd = $scope.dvdToAdd;
             $scope.dvdToAdd = {
-                DVD_ID: "",
                 DVD_TITLE: "",
                 DVD_DIRECTOR_ID: "",
                 DVD_GENRE_ID: "",

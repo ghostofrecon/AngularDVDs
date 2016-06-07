@@ -3,27 +3,30 @@
     <div class="col-lg-3">
         <div class="panel panel-primary" ng-controller="directorListCtrl">
             <div class="panel-heading">
-                <h3 class="panel-title">Recently Added Directors <span class="pull-right glyphicon glyphicon-refresh action-icon" ng-click="reactivate()"></span></h3>
+                <h3 class="panel-title"><a data-toggle="modal" href="#fullDirectorListModal"><span class="glyphicon glyphicon-list action-icon"></span></a> Recent Directors <span class="pull-right glyphicon glyphicon-refresh action-icon" ng-click="reactivate()"></span></h3>
             </div>
             <div class="panel-body">
                 <ul>
-                    <li ng-repeat="dir in DirectorsNameList | limitTo: 3" class="repeated-item">{{dir.DIRECTOR_NAME}}</li>
+                    <li ng-repeat="dir in DirectorsNameList | limitTo: 5 " class="repeated-item">{{dir.DIRECTOR_NAME}}</li>
                 </ul>
                 <span class="glyphicon glyphicon-plus pull-right action-icon text-success" data-toggle="modal" href="#addDirectorModal"></span>
             </div>
 
             <div add-director-modal=""></div>
+            @* full director list modal *@
+            <div full-director-list-modal=""></div>
         </div>
         <div class="panel panel-primary" ng-controller="genreListCtrl">
             <div class="panel-heading">
-                <h3 class="panel-title">Recently Added Genres<span class="pull-right glyphicon glyphicon-refresh action-icon" ng-click="refreshGenres()"></span></h3>
+                <h3 class="panel-title"><span class="glyphicon glyphicon-list action-icon"></span> Recent Genres<span class="pull-right glyphicon glyphicon-refresh action-icon" ng-click="refreshGenres()"></span></h3>
             </div>
             <div class="panel-body">
                 <ul>
-                    <li ng-repeat="gen in genres" class="repeated-item">{{gen.GENRE_NAME}}</li>
+                    <li ng-repeat="gen in genres|limitTo:5" class="repeated-item">{{gen.GENRE_NAME}}</li>
                 </ul>
                 <span class="glyphicon glyphicon-plus pull-right action-icon text-success" data-toggle="modal" href="#addGenreModal"></span>
                 <add-genre-modal></add-genre-modal>
+                @* full genre list modal *@
             </div>
         </div>
     </div>
@@ -32,31 +35,31 @@
     <div class="col-lg-9">
         <div class="panel panel-primary" ng-controller="dvdListCtrl">
             <div class="panel-heading">
-                <h3 class="panel-title form-inline">DVD List <span class="glyphicon glyphicon-refresh action-icon pull-right" ng-click="refreshData()"></span></h3>
+                <h3 class="panel-title form-inline">DVD List <span class="input-group" style="margin-left: 20px">
+    <span class="input-group-addon stdAddonWidth" id="Filter-Addon">Filter</span>
+    <input type="text" class="form-control" placeholder="Title" aria-describedby="Filter-Addon" ng-model="dvdSearch">
+</span>  <span class="glyphicon glyphicon-refresh action-icon pull-right" ng-click="refreshData()"></span></h3>
             </div>
-
             <div class="panel-body">
-                <div class="input-group" style="margin-bottom:10px">
-                    <span class="input-group-addon" id="Filter-Addon">Filter</span>
+                @*<div class="input-group" style="margin-bottom:10px">
+                    <span class="input-group-addon stdAddonWidth" id="Filter-Addon">Filter</span>
                     <input type="text" class="form-control" placeholder="Title" aria-describedby="Filter-Addon" ng-model="dvdSearch">
-                </div>
-                
-
+                </div>*@
                 <table class="table table-condensed table-stripped table-hover">
                     <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Genre</th>
-                        <th>Director</th>
-                        <th>Year</th>
+                        <th class="action-icon" ng-click="orderTableBy('DVD_TITLE')">Title <span class="glyphicon glyphicon-arrow-up" ng-show="orderColumn === 'DVD_TITLE'"></span><span class="glyphicon glyphicon-arrow-down" ng-show="orderColumn === '-DVD_TITLE'"></span></th>
+                        <th class="action-icon" ng-click="orderTableBy('GENRE_NAME')">Genre<span class="glyphicon glyphicon-arrow-up" ng-show="orderColumn === 'GENRE_NAME'"></span><span class="glyphicon glyphicon-arrow-down" ng-show="orderColumn === '-GENRE_NAME'"></span></th>
+                        <th class="action-icon" ng-click="orderTableBy('DIRECTOR_NAME')">Director<span class="glyphicon glyphicon-arrow-up" ng-show="orderColumn === 'DIRECTOR_NAME'"></span><span class="glyphicon glyphicon-arrow-down" ng-show="orderColumn === '-DIRECTOR_NAME'"></span> </th>
+                        <th class="action-icon" ng-click="orderTableBy('DVD_RELEASE_YEAR')">Year <span class="glyphicon glyphicon-arrow-up" ng-show="orderColumn === 'DVD_RELEASE_YEAR'"></span><span class="glyphicon glyphicon-arrow-down" ng-show="orderColumn === '-DVD_RELEASE_YEAR'"></span></th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="repeated-item" ng-repeat="dvd in dvds | filter: dvdSearch">
-                        <td>{{dvd.DVD_TITLE}}</td>
-                        <td>{{getGenre(dvd.DVD_GENRE_ID).GENRE_NAME}}</td>
-                        <td>{{getDirector(dvd.DVD_DIRECTOR_ID).DIRECTOR_NAME}}</td>
+                    <tr class="repeated-item" ng-repeat="dvd in dvds | filter: dvdSearch | orderBy: orderColumn">
+                        <td title="Added: {{dvd.DVD_ADDMOD_Datetime | date: 'MM/dd/yyyy @@ h:mma'}}">{{dvd.DVD_TITLE}}</td>
+                        <td>{{dvd.GENRE_NAME}}</td>
+                        <td>{{dvd.DIRECTOR_NAME}}</td>
                         <td>{{dvd.DVD_RELEASE_YEAR}}</td>
                         <td><span class="glyphicon glyphicon-remove action-icon text-danger pull-right" data-toggle="tooltip" data-placement="right" title="Remove this DVD" ng-click="removeDVD(dvd.DVD_ID)"></span></td>
                     </tr>
@@ -70,11 +73,7 @@
                     <tr add-dvd-inline ng-show="addMode"></tr>
                     </tbody>
                 </table>
-
             </div>
-            @*<div class="panel-footer">
-                <button class="btn btn-default">Button</button>
-            </div>*@
         </div>
     </div>
 </div>

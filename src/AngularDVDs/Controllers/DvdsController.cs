@@ -9,6 +9,8 @@ using AngularDVDs.EF;
 
 namespace AngularDVDs.Controllers
 {
+    using System.Linq.Expressions;
+
     [Produces("application/json")]
     [Route("api/Dvds")]
     public class DvdsController : Controller
@@ -20,11 +22,26 @@ namespace AngularDVDs.Controllers
             _context = context;
         }
 
+        private object preparedDVD(DVD x)
+        {
+            return
+                new
+                    {
+                        x.DVD_ID,
+                        x.DVD_TITLE,
+                        x.DVD_DIRECTOR_ID,
+                        x.DVD_GENRE_ID,
+                        x.DVD_RELEASE_YEAR,
+                        x.DVD_ADDMOD_Datetime,
+                        x.DVD_GENRE.GENRE_NAME,
+                        x.DVD_DIRECTOR.DIRECTOR_NAME
+                    };
+        }
         // GET: api/Dvds
         [HttpGet]
-        public IEnumerable<DVD> GetDVD()
+        public IEnumerable<object> GetDVD()
         {
-            return _context.DVD;
+            return _context.DVD.Select(x => preparedDVD(x));
         }
 
         // GET: api/Dvds/5
@@ -38,12 +55,13 @@ namespace AngularDVDs.Controllers
 
             DVD dVD = await _context.DVD.SingleOrDefaultAsync(m => m.DVD_ID == id);
 
+
             if (dVD == null)
             {
                 return NotFound();
             }
 
-            return Ok(dVD);
+            return Ok(preparedDVD(dVD));
         }
 
         // PUT: api/Dvds/5
@@ -90,6 +108,7 @@ namespace AngularDVDs.Controllers
                 return BadRequest(ModelState);
             }
             dVD.DVD_ID = Guid.NewGuid();
+            dVD.DVD_ADDMOD_Datetime = DateTime.Now;
             _context.DVD.Add(dVD);
             try
             {

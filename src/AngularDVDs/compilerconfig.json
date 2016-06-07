@@ -1,0 +1,22 @@
+﻿[
+  {
+    "outputFile": "wwwroot/js/dvdApp/services/toastFactory.es5.js",
+    "inputFile": "wwwroot/js/dvdApp/services/toastFactory.js"
+  },
+  {
+    "outputFile": "wwwroot/js/dvdApp/directorListCtrl.es5.js",
+    "inputFile": "wwwroot/js/dvdApp/directorListCtrl.js"
+  },
+  {
+    "outputFile": "wwwroot/js/dvdApp/dvdApp.es5.js",
+    "inputFile": "wwwroot/js/dvdApp/dvdApp.js"
+  },
+  {
+    "outputFile": "wwwroot/js/dvdApp/dvdListCtrl.es5.js",
+    "inputFile": "wwwroot/js/dvdApp/dvdListCtrl.js"
+  },
+  {
+    "outputFile": "wwwroot/js/dvdApp/genreListCtrl.es5.js",
+    "inputFile": "wwwroot/js/dvdApp/genreListCtrl.js"
+  }
+]

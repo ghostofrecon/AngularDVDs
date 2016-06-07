@@ -48,10 +48,10 @@
         activate();
         
         function activate() {
-            $http.get("api/genres").then(function (response) { $scope.genres = response.data.slice(0,3).sort(function (a, b) { return (a.DIRECTOR_ADDMOD_Datetime < b.GENRE_ADDMOD_Datetime) ? 1 : ((a.GENRE_ADDMOD_Datetime > b.GENRE_ADDMOD_Datetime) ? -1 : 0)}) });
+            $http.get("api/genres").then(function (response) { $scope.genres = response.data.sort(function (a, b) { return (a.DIRECTOR_ADDMOD_Datetime < b.GENRE_ADDMOD_Datetime) ? 1 : ((a.GENRE_ADDMOD_Datetime > b.GENRE_ADDMOD_Datetime) ? -1 : 0)}) });
         }
         $scope.refreshGenres = function() {
-            $http.get("api/genres").then(function (response) { $scope.genres = response.data.slice(0, 3).sort(function (a, b) { return (a.DIRECTOR_ADDMOD_Datetime < b.GENRE_ADDMOD_Datetime) ? 1 : ((a.GENRE_ADDMOD_Datetime > b.GENRE_ADDMOD_Datetime) ? -1 : 0) }) });
+            $http.get("api/genres").then(function (response) { $scope.genres = response.data.sort(function (a, b) { return (a.DIRECTOR_ADDMOD_Datetime < b.GENRE_ADDMOD_Datetime) ? 1 : ((a.GENRE_ADDMOD_Datetime > b.GENRE_ADDMOD_Datetime) ? -1 : 0) }) });
             toastFactory.showToast("info", 3000, "Genres refreshed.");
         }
         

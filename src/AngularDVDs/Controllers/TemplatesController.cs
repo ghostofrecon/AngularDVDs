@@ -27,5 +27,10 @@ namespace AngularDVDs.Controllers
         {
             return this.PartialView();
         }
+
+        public IActionResult fulldirectorListModal()
+        {
+            return this.PartialView();
+        }
     }
 }
