@@ -4,15 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace AngularDVDs.Controllers
 {
     using System.IO;
     using System.Net;
     using System.Text.Encodings.Web;
-
-    using Newtonsoft.Json.Linq;
 
     [Produces("application/json")]
     [Route("api/ImdbSearch")]

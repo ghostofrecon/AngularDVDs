@@ -90,7 +90,7 @@ textarea {
   that has the .repeated-item class
 */
 .repeated-item.ng-leave {
-  animation: 0.5s my_animation;
+  animation: 0.2s my_animation;
 }
 
 @keyframes my_animation {

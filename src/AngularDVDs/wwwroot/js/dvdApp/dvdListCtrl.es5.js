@@ -52,12 +52,14 @@
 
         $scope.refreshData = function (showToast) {
             $http.get("api/directors").then(function (response) {
+
                 $scope.directors = response.data;
             });
             $http.get("api/genres").then(function (response) {
                 $scope.genres = response.data;
             });
             $http.get("api/dvds").then(function (response) {
+                //$scope.dvds = [];
                 $scope.dvds = response.data;
             });
             $scope.dvdSearch = "";

@@ -25,14 +25,14 @@
         $scope.orderColumn = "-DVD_ADDMOD_Datetime";
         $scope.orderTableBy = function(column) {
             switch ($scope.orderColumn) {
-                case column:
-                    $scope.orderColumn = "-" + column;
-                    break;
-                default:
-                    $scope.orderColumn = column;
-                    break;
+            case column:
+                $scope.orderColumn = "-" + column;
+                break;
+            default:
+                $scope.orderColumn = column;
+                break;
             }
-        }
+        };
         $scope.enableAddMode = function(state) {
             $http.get("api/directors").then(function(response) { $scope.directors = response.data; });
             $http.get("api/genres").then(function(response) { $scope.genres = response.data; });
@@ -45,60 +45,68 @@
             DVD_GENRE_ID: "",
             DVD_RELEASE_YEAR: new Date().getFullYear(),
             DVD_ADDMOD_Datetime: new Date()
-        }
+        };
 
-        $scope.refreshData = function (showToast) {
-            $http.get("api/directors").then(function(response) {
-                $scope.directors = response.data; 
-            });
-            $http.get("api/genres").then(function(response) {
-                $scope.genres = response.data; 
-            });
-            $http.get("api/dvds").then(function(response) {
-                $scope.dvds = response.data;
-            });
+        $scope.refreshData = function(showToast) {
+            $http.get("api/directors")
+                .then(function(response) {
+                    
+                    $scope.directors = response.data;
+
+                });
+            $http.get("api/genres")
+                .then(function(response) {
+                    $scope.genres = response.data;
+                });
+            $http.get("api/dvds")
+                .then(function(response) {
+                    //$scope.dvds = [];
+                    $scope.dvds = response.data;
+                });
             $scope.dvdSearch = "";
-            
+
             if (showToast !== false) {
                 toastFactory.showToast("info", 3000, "DVD Data Refreshed");
             }
-            
-        }
+
+        };
         $scope.refreshData(false);
-        $scope.removeDVD = function (id) {
-            $http.delete("api/dvds/"+id).then(function(response) {
-                toastFactory.showToast("success", 3000, "DVD removed from database");
-            }, function (response){
-                toastFactory.showToast("error", 3000, "DVD couldn't be removed: Code: " + response.statusCode);
-            });
+        $scope.removeDVD = function(id) {
+            $http.delete("api/dvds/" + id)
+                .then(function(response) {
+                        toastFactory.showToast("success", 3000, "DVD removed from database");
+                    },
+                    function(response) {
+                        toastFactory.showToast("error", 3000, "DVD couldn't be removed: Code: " + response.statusCode);
+                    });
             for (var i = 0; i < $scope.dvds.length; i++) {
                 if ($scope.dvds[i].DVD_ID === id) {
 
                     $scope.dvds.splice(i, 1);
                 }
             }
-        }
-        $scope.dvdsIsEmpty = function () {
+        };
+        $scope.dvdsIsEmpty = function() {
             if ($scope.dvds.length === 0) {
                 return true;
             }
             return false;
-        }
-        $scope.addDVD = function () {
+        };
+        $scope.addDVD = function() {
             var html = "<tr id='addDvdRow' add-dvd-inline></tr>";
             var elem = angular.element(html);
             $compile(elem);
             $("#AddDvdRow").replaceWith(elem);
-        }
-        $scope.saveDVD = function () {
-           
+        };
+        $scope.saveDVD = function() {
+
             if ($scope.dvdToAdd.DVD_GENRE_ID === "") {
                 $('#genreIdSelect').popover({ placement: "bottom" }).popover("show");
             }
             if ($scope.dvdToAdd.DVD_DIRECTOR_ID === "") {
-                $('#directorIdSelect').popover({placement: "top"}).popover("show");
+                $('#directorIdSelect').popover({ placement: "top" }).popover("show");
             }
-            
+
             if ($scope.dvdToAdd.DVD_DIRECTOR_ID === "" || $scope.dvdToAdd.DVD_GENRE_ID === "") {
                 return;
             }
@@ -110,14 +118,14 @@
                 DVD_GENRE_ID: "",
                 DVD_RELEASE_YEAR: new Date().getFullYear(),
                 DVD_ADDMOD_Datetime: new Date()
-            }
+            };
             toastFactory.showToast("info", 3000, dvd.DVD_TITLE + " added to list.");
             postDvdtoApi(dvd);
             $scope.enableAddMode(false);
-        }
+        };
         $scope.getJson = function(object) {
             return angular.fromJson(object);
-        }
+        };
         function postDvdtoApi(dvd) {
             $http.post("api/dvds", dvd)
                 .then(function (response) {
@@ -144,9 +152,9 @@
             restrict: "AE",
             replace: true,
             scope: true,
-            link: function () {
+            link: function() {
             }
-        }
+        };
     }
    
 })(window);
