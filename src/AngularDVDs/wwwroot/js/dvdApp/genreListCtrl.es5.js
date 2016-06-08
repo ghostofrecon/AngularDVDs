@@ -48,12 +48,17 @@
                 });
             });
         }
+
         $scope.refreshGenres = function () {
-            $http.get("api/genres").then(function (response) {
-                $scope.genres = response.data.sort(function (a, b) {
-                    return a.DIRECTOR_ADDMOD_Datetime < b.GENRE_ADDMOD_Datetime ? 1 : a.GENRE_ADDMOD_Datetime > b.GENRE_ADDMOD_Datetime ? -1 : 0;
+            $scope.genres = [];
+            setTimeout(function () {
+                $http.get("api/genres").then(function (response) {
+                    $scope.genres = response.data.sort(function (a, b) {
+                        return a.DIRECTOR_ADDMOD_Datetime >= b.GENRE_ADDMOD_Datetime ? a.GENRE_ADDMOD_Datetime > b.GENRE_ADDMOD_Datetime ? -1 : 0 : 1;
+                    });
                 });
-            });
+            }, 500);
+
             toastFactory.showToast("info", 3000, "Genres refreshed.");
         };
     }

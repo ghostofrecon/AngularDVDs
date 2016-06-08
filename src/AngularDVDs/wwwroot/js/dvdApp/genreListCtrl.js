@@ -14,9 +14,9 @@
             restrict: "AE",
             replace: true,
             scope: true,
-            link : function() {
-            } 
-        }
+            link: function() {
+            }
+        };
 
 
     }
@@ -24,7 +24,7 @@
     function genreListCtrl($scope, $http, toastFactory) {
         $scope.title = 'genreListCtrl';
         $scope.genres = [];
-        $scope.addGenre = function (nGenreName, nGenreDesc) {
+        $scope.addGenre = function(nGenreName, nGenreDesc) {
             if (nGenreDesc === undefined) {
                 nGenreDesc = " ";
             }
@@ -37,23 +37,42 @@
             }
             $http.post("api/genres", { GENRE_NAME: nGenreName, GENRE_DESC: nGenreDesc })
                 .then(function() {
-                    toastFactory.showToast("success", 3000, "Genre added to database");
-                    $("#addGenreModal").modal("hide");
+                        toastFactory.showToast("success", 3000, "Genre added to database");
+                        $("#addGenreModal").modal("hide");
                         $scope.refreshGenres();
                     },
                     function() {
                         toastFactory.showToast("error", 3000, "Genre could not be added to database");
                     });
-        }
+        };
         activate();
         
         function activate() {
-            $http.get("api/genres").then(function (response) { $scope.genres = response.data.sort(function (a, b) { return (a.DIRECTOR_ADDMOD_Datetime < b.GENRE_ADDMOD_Datetime) ? 1 : ((a.GENRE_ADDMOD_Datetime > b.GENRE_ADDMOD_Datetime) ? -1 : 0)}) });
+            $http.get("api/genres").then(function (response) {
+                $scope.genres = response.data.sort(function(a, b) {
+                    return a.DIRECTOR_ADDMOD_Datetime < b.GENRE_ADDMOD_Datetime
+                        ? 1
+                        : a.GENRE_ADDMOD_Datetime > b.GENRE_ADDMOD_Datetime ? -1 : 0;
+                });
+            });
         }
+
         $scope.refreshGenres = function() {
-            $http.get("api/genres").then(function (response) { $scope.genres = response.data.sort(function (a, b) { return (a.DIRECTOR_ADDMOD_Datetime < b.GENRE_ADDMOD_Datetime) ? 1 : ((a.GENRE_ADDMOD_Datetime > b.GENRE_ADDMOD_Datetime) ? -1 : 0) }) });
+            $scope.genres = [];
+            setTimeout(function() {
+                    $http.get("api/genres")
+                        .then(function(response) {
+                            $scope.genres = response.data.sort(function(a, b) {
+                                return a.DIRECTOR_ADDMOD_Datetime >= b.GENRE_ADDMOD_Datetime
+                                    ? a.GENRE_ADDMOD_Datetime > b.GENRE_ADDMOD_Datetime ? -1 : 0
+                                    : 1;
+                            });
+                        });
+                },
+                500);
+
             toastFactory.showToast("info", 3000, "Genres refreshed.");
-        }
-        
+        };
+
     }
 })();

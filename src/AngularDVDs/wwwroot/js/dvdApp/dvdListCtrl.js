@@ -47,22 +47,32 @@
             DVD_ADDMOD_Datetime: new Date()
         };
 
-        $scope.refreshData = function(showToast) {
-            $http.get("api/directors")
-                .then(function(response) {
-                    
-                    $scope.directors = response.data;
+        $scope.refreshData = function (showToast) {
+            $scope.dvds = [];
+            setTimeout(function() {
+                    $http.get("api/directors")
+                        .then(function(response) {
 
-                });
-            $http.get("api/genres")
-                .then(function(response) {
-                    $scope.genres = response.data;
-                });
-            $http.get("api/dvds")
-                .then(function(response) {
-                    //$scope.dvds = [];
-                    $scope.dvds = response.data;
-                });
+                            $scope.directors = response.data;
+
+                        });
+                },
+                500);
+            
+            setTimeout(function() {
+                    $http.get("api/genres")
+                        .then(function(response) {
+                            $scope.genres = response.data;
+                        });
+                },
+                500);
+            setTimeout(function () {
+                $http.get("api/dvds")
+                    .then(function (response) {
+                        $scope.dvds = response.data;
+                    });
+            }, 500);
+            
             $scope.dvdSearch = "";
 
             if (showToast !== false) {

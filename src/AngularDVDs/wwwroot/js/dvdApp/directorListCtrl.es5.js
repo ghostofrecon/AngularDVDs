@@ -42,11 +42,14 @@
         $scope.start = 0;
         $scope.currentPage = 0;
         $scope.reactivate = function () {
-            $http.get("api/directors").then(function (response) {
-                $scope.DirectorsNameList = response.data.sort(function (a, b) {
-                    return a.DIRECTOR_ADDMOD_Datetime < b.DIRECTOR_ADDMOD_Datetime ? 1 : a.DIRECTOR_ADDMOD_Datetime > b.DIRECTOR_ADDMOD_Datetime ? -1 : 0;
+            $scope.DirectorsNameList = [];
+            setTimeout(function () {
+                $http.get("api/directors").then(function (response) {
+                    $scope.DirectorsNameList = response.data.sort(function (a, b) {
+                        return a.DIRECTOR_ADDMOD_Datetime < b.DIRECTOR_ADDMOD_Datetime ? 1 : a.DIRECTOR_ADDMOD_Datetime > b.DIRECTOR_ADDMOD_Datetime ? -1 : 0;
+                    });
                 });
-            });
+            }, 500);
             toastFactory.showToast("info", 3000, "Directors refreshed");
         };
         $scope.numberOfPages = function () {
