@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AngularDVDs.ef
+namespace AngularDVDs.EF
 {
     public partial class GENRE
     {
         public GENRE()
         {
-            DVD = new HashSet<DVD>();
+            this.DVD = new HashSet<DVD>();
         }
 
         public Guid GENRE_ID { get; set; }

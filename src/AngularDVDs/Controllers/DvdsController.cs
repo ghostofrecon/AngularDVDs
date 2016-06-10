@@ -2,16 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using AngularDVDs.EF;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AngularDVDs.ef;
 
 namespace AngularDVDs.Controllers
 {
     using System.Linq.Expressions;
 
-    using AngularDVDs.ef;
+    using AngularDVDs.EF;
 
     [Produces("application/json")]
     [Route("api/Dvds")]
@@ -21,34 +23,38 @@ namespace AngularDVDs.Controllers
 
         public DvdsController(dvdContext context)
         {
-            _context = context;
+            this._context = context;
         }
 
         private IEnumerable<object> preparedDVD(List<DVD> dvd)
         {
-            return dvd.Select(x => new
-            {
-                x.DVD_ID,
-                x.DVD_TITLE,
-                x.DVD_DIRECTOR_ID,
-                x.DVD_GENRE_ID,
-                x.DVD_RELEASE_YEAR,
-                x.DVD_ADDMOD_Datetime,
-                this._context.DIRECTOR.Single(y => y.DIRECTOR_ID == x.DVD_DIRECTOR_ID).DIRECTOR_NAME,
-                this._context.GENRE.Single(y => y.GENRE_ID == x.DVD_GENRE_ID).GENRE_NAME
-
-            }).ToList();
+            return
+                dvd.Select(
+                    x =>
+                    new
+                        {
+                            x.DVD_ID, 
+                            x.DVD_TITLE, 
+                            x.DVD_DIRECTOR_ID, 
+                            x.DVD_GENRE_ID, 
+                            x.DVD_RELEASE_YEAR, 
+                            x.DVD_ADDMOD_Datetime, 
+                            this._context.DIRECTOR.Single(y => y.DIRECTOR_ID == x.DVD_DIRECTOR_ID).DIRECTOR_NAME, 
+                            this._context.GENRE.Single(y => y.GENRE_ID == x.DVD_GENRE_ID).GENRE_NAME
+                        }).ToList();
         }
+
         // GET: api/Dvds
         [HttpGet]
         public IEnumerable<object> GetDVD()
         {
-            if (_context.DVD.Any())
+            if (this._context.DVD.Any())
             {
                 var result = this._context.DVD.ToList();
 
                 return this.preparedDVD(result);
             }
+
             return null;
         }
 
@@ -56,48 +62,48 @@ namespace AngularDVDs.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDVD([FromRoute] Guid id)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
-            DVD dVD = await _context.DVD.SingleOrDefaultAsync(m => m.DVD_ID == id);
-
+            DVD dVD = await this._context.DVD.SingleOrDefaultAsync(m => m.DVD_ID == id);
 
             if (dVD == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
+
             List<DVD> dvdList = new List<DVD>();
             dvdList.Add(dVD);
-            return Ok(this.preparedDVD(dvdList).Single());
+            return this.Ok(this.preparedDVD(dvdList).Single());
         }
 
         // PUT: api/Dvds/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDVD([FromRoute] Guid id, [FromBody] DVD dVD)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
             if (id != dVD.DVD_ID)
             {
-                return BadRequest();
+                return this.BadRequest();
             }
 
-            _context.Entry(dVD).State = EntityState.Modified;
+            this._context.Entry(dVD).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await this._context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DVDExists(id))
+                if (!this.DVDExists(id))
                 {
-                    return NotFound();
+                    return this.NotFound();
                 }
                 else
                 {
@@ -105,27 +111,28 @@ namespace AngularDVDs.Controllers
                 }
             }
 
-            return NoContent();
+            return this.NoContent();
         }
 
         // POST: api/Dvds
         [HttpPost]
         public async Task<IActionResult> PostDVD([FromBody] DVD dVD)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
+
             dVD.DVD_ID = Guid.NewGuid();
             dVD.DVD_ADDMOD_Datetime = DateTime.Now;
-            _context.DVD.Add(dVD);
+            this._context.DVD.Add(dVD);
             try
             {
-                await _context.SaveChangesAsync();
+                await this._context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (DVDExists(dVD.DVD_ID))
+                if (this.DVDExists(dVD.DVD_ID))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -135,33 +142,33 @@ namespace AngularDVDs.Controllers
                 }
             }
 
-            return CreatedAtAction("GetDVD", new { id = dVD.DVD_ID }, dVD);
+            return this.CreatedAtAction("GetDVD", new { id = dVD.DVD_ID }, dVD);
         }
 
         // DELETE: api/Dvds/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDVD([FromRoute] Guid id)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
-            DVD dVD = await _context.DVD.SingleOrDefaultAsync(m => m.DVD_ID == id);
+            DVD dVD = await this._context.DVD.SingleOrDefaultAsync(m => m.DVD_ID == id);
             if (dVD == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
-            _context.DVD.Remove(dVD);
-            await _context.SaveChangesAsync();
+            this._context.DVD.Remove(dVD);
+            await this._context.SaveChangesAsync();
 
-            return Ok(dVD);
+            return this.Ok(dVD);
         }
 
         private bool DVDExists(Guid id)
         {
-            return _context.DVD.Any(e => e.DVD_ID == id);
+            return this._context.DVD.Any(e => e.DVD_ID == id);
         }
     }
 }

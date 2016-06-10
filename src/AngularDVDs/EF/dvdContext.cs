@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace AngularDVDs.ef
+namespace AngularDVDs.EF
 {
     public partial class dvdContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             ////#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            //optionsBuilder.UseSqlServer(@"Data Source=.\SQL2014;Initial Catalog=DVDCollection;Integrated Security=False;User ID=dvduser;Password=dvdpassword;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            // optionsBuilder.UseSqlServer(@"Data Source=.\SQL2014;Initial Catalog=DVDCollection;Integrated Security=False;User ID=dvduser;Password=dvdpassword;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
 
         public dvdContext(DbContextOptions<dvdContext> options)
@@ -16,6 +16,7 @@ namespace AngularDVDs.ef
         {
             
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AspNetRoleClaims>(entity =>

@@ -1,5 +1,6 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using System.IO
 @using AngularDVDs.Models
+@using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -17,7 +18,11 @@
 else
 {
     <ul class="nav navbar-nav navbar-right grey-nav">
-        <li><a asp-controller="Account" asp-action="Register">Register</a></li>
-        <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
+        <li>
+            <a asp-controller="Account" asp-action="Register">Register</a>
+        </li>
+        <li>
+            <a asp-controller="Account" asp-action="Login">Log in</a>
+        </li>
     </ul>
 }

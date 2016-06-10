@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AngularDVDs.ef
+namespace AngularDVDs.EF
 {
     public partial class AspNetRoles
     {
         public AspNetRoles()
         {
-            AspNetRoleClaims = new HashSet<AspNetRoleClaims>();
-            AspNetUserRoles = new HashSet<AspNetUserRoles>();
+            this.AspNetRoleClaims = new HashSet<AspNetRoleClaims>();
+            this.AspNetUserRoles = new HashSet<AspNetUserRoles>();
         }
 
         public string Id { get; set; }

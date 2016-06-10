@@ -69,8 +69,13 @@ textarea {
   class
 */
 .repeated-item.ng-enter, .repeated-item.ng-move {
-  transition: all 0.5s ease;
-  opacity: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    -ms-opacity: 0;
+    opacity: 0;
 }
 
 /*
@@ -79,10 +84,11 @@ textarea {
  are set so that the animation knows what to
  animate.
 */
-.repeated-item.ng-enter.ng-enter-active,
-.repeated-item.ng-move.ng-move-active {
-  opacity: 1;
-}
+    .repeated-item.ng-enter.ng-enter-active,
+    .repeated-item.ng-move.ng-move-active {
+        -ms-opacity: 1;
+        opacity: 1;
+    }
 
 /*
   We're using CSS keyframe animations for when
@@ -90,62 +96,130 @@ textarea {
   that has the .repeated-item class
 */
 .repeated-item.ng-leave {
-  animation: 0.2s my_animation;
+    -webkit-animation: 0.2s my_animation;
+    -moz-animation: 0.2s my_animation;
+    -ms-animation: 0.2s my_animation;
+    -o-animation: 0.2s my_animation;
+    animation: 0.2s my_animation;
 }
 
 @keyframes my_animation {
-  from { opacity:1; }
-  to { opacity:0; }
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
+
 .stdAddonWidth {
     width: 65px;
     max-width: 65px;
 }
+
 input {
     background-color: #272b30;
-    color:lightgray
+    color: lightgray;
 }
 
-.ui-menu-item .imdbTitle{
+.ui-menu-item .imdbTitle {
     font-size: 0.9em;
     font-weight: bold;
 }
-.ui-menu-item .imdbCast{
+
+.ui-menu-item .imdbCast {
     font-size: 0.7em;
     font-style: italic;
     line-height: 110%;
     color: #666;
 }
-.ui-menu-item .imdbImage{
+
+.ui-menu-item .imdbImage {
     float: left;
     margin-right: 5px;
 }
-.ui-menu-item .clear{
+
+.ui-menu-item .clear {
     clear: both;
 }
+
 .select2-results .select2-highlighted {
-  background-color: #c8c8c8 !important;
-  color: #272b30!important;
+    background-color: #c8c8c8 !important;
+    color: #272b30 !important;
 }
+
 .select2-container .select2-choices .select2-search-field input,
 .select2-container .select2-choice,
 .select2-container .select2-choices {
     background: none;
-  padding: 0;
-  border-color: black;
-  border-radius: 4px;
-  color: lightgray!important;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #272b30!important;
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false)!important;
+    padding: 0;
+    border-color: black;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    color: lightgray !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #272b30 !important;
+    -webkit-filter: progid:DXImageTransform.Microsoft.gradient(enabled = false) !important;
+    -moz-filter: progid:DXImageTransform.Microsoft.gradient(enabled = false) !important;
+    -o-filter: progid:DXImageTransform.Microsoft.gradient(enabled = false) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false) !important;
     -webkit-box-shadow: inset 0 1px 1px #000000;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)!important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075) !important;
     -moz-box-shadow: inset 0 1px 1px #000000;
-    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)!important;
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075) !important;
+    -ms-box-shadow: inset 0 1px 1px #000000;
     box-shadow: inset 0 1px 1px #000000;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)!important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075) !important;
+}
+
+.select2-search input {
+    border-color: #cccccc;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    color: #c8c8c8;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: white;
+    -webkit-filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    -moz-filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    -o-filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    -webkit-box-shadow: inset 0 1px 1px #000000;
+    -webkit-box-shadow: inset 0 1px 1px #000000;
+    -ms-box-shadow: inset 0 1px 1px #000000;
+    -ms-box-shadow: inset 0 1px 1px #000000;
+    box-shadow: inset 0 1px 1px #000000;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 .select2-drop-active {
-    border-color: #272b30!important;
+  border-color: #c8c8c8;
+}
+
+.select2-drop-auto-width,
+.select2-drop.select2-drop-above.select2-drop-active {
+  border-top-color: #c8c8c8;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #272b30;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #000000;
+    -ms-box-shadow: inset 0 0 6px #000000;
+    -ms-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 6px #000000;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 0 6px #c8c8c8;
+    -ms-box-shadow: inset 0 0 6px #c8c8c8;
+    box-shadow: inset 0 0 6px #c8c8c8;
 }

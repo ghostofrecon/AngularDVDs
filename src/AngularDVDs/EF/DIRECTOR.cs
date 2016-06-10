@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AngularDVDs.ef
+namespace AngularDVDs.EF
 {
     public partial class DIRECTOR
     {
         public DIRECTOR()
         {
-            DVD = new HashSet<DVD>();
+            this.DVD = new HashSet<DVD>();
         }
 
         public Guid DIRECTOR_ID { get; set; }

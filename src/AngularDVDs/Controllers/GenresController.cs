@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using AngularDVDs.EF;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AngularDVDs.ef;
 
 namespace AngularDVDs.Controllers
 {
@@ -17,60 +19,60 @@ namespace AngularDVDs.Controllers
 
         public GenresController(dvdContext context)
         {
-            _context = context;
+            this._context = context;
         }
 
         // GET: api/Genres
         [HttpGet]
         public IEnumerable<GENRE> GetGENRE()
         {
-            return _context.GENRE;
+            return this._context.GENRE;
         }
 
         // GET: api/Genres/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetGENRE([FromRoute] Guid id)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
-            GENRE gENRE = await _context.GENRE.SingleOrDefaultAsync(m => m.GENRE_ID == id);
+            GENRE gENRE = await this._context.GENRE.SingleOrDefaultAsync(m => m.GENRE_ID == id);
 
             if (gENRE == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
-            return Ok(gENRE);
+            return this.Ok(gENRE);
         }
 
         // PUT: api/Genres/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutGENRE([FromRoute] Guid id, [FromBody] GENRE gENRE)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
             if (id != gENRE.GENRE_ID)
             {
-                return BadRequest();
+                return this.BadRequest();
             }
 
-            _context.Entry(gENRE).State = EntityState.Modified;
+            this._context.Entry(gENRE).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await this._context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!GENREExists(id))
+                if (!this.GENREExists(id))
                 {
-                    return NotFound();
+                    return this.NotFound();
                 }
                 else
                 {
@@ -78,28 +80,29 @@ namespace AngularDVDs.Controllers
                 }
             }
 
-            return NoContent();
+            return this.NoContent();
         }
 
         // POST: api/Genres
         [HttpPost]
         public async Task<IActionResult> PostGENRE([FromBody] GENRE gENRE)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
+
             gENRE.GENRE_ID = Guid.NewGuid();
             gENRE.GENRE_ADDMOD_Datetime = DateTime.Now;
-            _context.GENRE.Add(gENRE);
+            this._context.GENRE.Add(gENRE);
             try
             {
-                await _context.SaveChangesAsync();
+                await this._context.SaveChangesAsync();
             }
             catch (DbUpdateException ex)
             {
                 var exception = ex;
-                if (GENREExists(gENRE.GENRE_ID))
+                if (this.GENREExists(gENRE.GENRE_ID))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -109,33 +112,33 @@ namespace AngularDVDs.Controllers
                 }
             }
 
-            return CreatedAtAction("GetGENRE", new { id = gENRE.GENRE_ID }, gENRE);
+            return this.CreatedAtAction("GetGENRE", new { id = gENRE.GENRE_ID }, gENRE);
         }
 
         // DELETE: api/Genres/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGENRE([FromRoute] Guid id)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
-            GENRE gENRE = await _context.GENRE.SingleOrDefaultAsync(m => m.GENRE_ID == id);
+            GENRE gENRE = await this._context.GENRE.SingleOrDefaultAsync(m => m.GENRE_ID == id);
             if (gENRE == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
-            _context.GENRE.Remove(gENRE);
-            await _context.SaveChangesAsync();
+            this._context.GENRE.Remove(gENRE);
+            await this._context.SaveChangesAsync();
 
-            return Ok(gENRE);
+            return this.Ok(gENRE);
         }
 
         private bool GENREExists(Guid id)
         {
-            return _context.GENRE.Any(e => e.GENRE_ID == id);
+            return this._context.GENRE.Any(e => e.GENRE_ID == id);
         }
     }
 }
