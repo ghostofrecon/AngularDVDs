@@ -18,10 +18,11 @@
         "ngResource",
         "ui.select2",
         'dvdApp.toast',
-        "ngMaterial"
+        "ngMaterial",
 
         // Custom modules 
 
         // 3rd Party Modules
+        'angularSpinner'
     ]);
 })();

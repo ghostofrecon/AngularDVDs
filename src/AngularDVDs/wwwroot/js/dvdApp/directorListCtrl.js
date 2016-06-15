@@ -8,7 +8,7 @@
         .filter("startFrom", startFromFilter)
         .controller('directorListCtrl', directorListCtrl);
 
-    directorListCtrl.$inject = ['$scope', '$http', 'toastFactory'];
+    directorListCtrl.$inject = ['$scope', '$http', 'toastFactory', 'usSpinnerService'];
 
     function fullDirectorListModal() {
         return {
@@ -42,14 +42,15 @@
         };
     }
 
-    function directorListCtrl($scope, $http, toastFactory) {
+    function directorListCtrl($scope, $http, toastFactory, usSpinnerService) {
         $scope.title = 'directorListCtrl';
         $scope.DirectorsNameList = [];
         $scope.dirToAdd = "";
         $scope.directors = [];
         $scope.start = 0;
         $scope.currentPage = 0;
-        $scope.reactivate = function() {
+        $scope.reactivate = function () {
+            $scope.startSpin();
             $scope.DirectorsNameList = [];
             setTimeout(function() {
                     $http.get("api/directors")
@@ -63,10 +64,21 @@
                         });
                 },
                 500);
+            $scope.stopSpin();
             toastFactory.showToast("info", 3000, "Directors refreshed");
         };
         $scope.numberOfPages = function() {
             return Math.ceil($scope.DirectorsNameList / 10);
+        };
+        $scope.startSpin = function () {
+            if (!$scope.spinneractive) {
+                usSpinnerService.spin('spinner-1');
+            }
+        };
+        $scope.stopSpin = function () {
+            if ($scope.spinneractive) {
+                usSpinnerService.stop('spinner-1');
+            }
         };
         $scope.addDirector = function(newDir) {
             if ($scope.DirectorsNameList) {
@@ -100,6 +112,7 @@
         };
 
         function activate() {
+            $scope.startSpin();
             $http.get("api/directors").then(function (response) {
                 $scope.DirectorsNameList = response.data
                     .sort(function(a, b) {
@@ -109,7 +122,7 @@
                     });
             });
 
-            //$scope.DirectorsNameList = $scope.directors.slice(0, 3)
+            $scope.stopSpin();
         }
     }
 

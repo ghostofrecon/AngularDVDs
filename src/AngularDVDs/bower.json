@@ -18,8 +18,9 @@
     "select2": "3.4.8",
     "select2-bootstrap-css": "1.4.6",
     "angular-aria": "1.5.6",
-    "angular-messages": "1.5.6", 
-    "angular-material" : "1.1.0-rc2" 
+    "angular-messages": "1.5.6",
+    "angular-material": "1.1.0-rc2",
+    "angular-spinner":"0.8.1" 
   },
   "resolutions": {
     "angular": "^1.0.0"
