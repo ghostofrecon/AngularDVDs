@@ -14,5 +14,9 @@ $(function() {
 
             });
     $("#genreIdSelect").select2();
-    
+    $("#logoffBtn")
+                .click(function () {
+            event.preventDefault();
+                    $("#logoutForm").submit();
+                });
 });

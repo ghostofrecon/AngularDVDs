@@ -80,12 +80,10 @@
                             <span class="glyphicon glyphicon-remove action-icon text-danger pull-right" data-toggle="tooltip" data-placement="right" title="Remove this DVD" ng-click="removeDVD(dvd.DVD_ID)"></span></td>
                     </tr>
                     <tr id="AddDvdRow" ng-hide="addMode">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="4"></td>
                         <td>
-                            <span class="glyphicon glyphicon-plus text-success action-icon pull-right" ng-hide="addMode" ng-click="enableAddMode(true)"></span></td>
+                            <span class="glyphicon glyphicon-plus text-success action-icon pull-right" ng-hide="addMode" ng-click="enableAddMode(true)"></span>
+                        </td>
                     </tr>
                     <tr add-dvd-inline ng-show="addMode"></tr>
                     </tbody>
@@ -129,11 +127,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <button type="submit" class="btn btn-default">Log in</button>
-                        </div>
-                    </div>
                     <p>
                         <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
                     </p>
@@ -144,7 +137,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary">Login</button>
             </div>
             <script>
                             $(function() {

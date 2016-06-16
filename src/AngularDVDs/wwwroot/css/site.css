@@ -1,5 +1,6 @@
 ﻿html,body {
- height:100%;
+ min-height:100%;
+    height: auto;
 
 }
 footer {
@@ -270,11 +271,17 @@ input {
     display: table-cell;
     vertical-align: middle;
 }*/
+table {
+    max-width: 100%;
+    width: inherit;
+}
+
 table > tbody > tr > td {
     -moz-text-overflow: ellipsis-word;
     -ms-text-overflow: ellipsis-word;
     -o-text-overflow: ellipsis-word;
     text-overflow: ellipsis-word;
+    max-width: 20em;
 }
 .ellipsis {
     white-space: nowrap;
@@ -293,4 +300,74 @@ table > tbody > tr > td {
     border-right-color: rgb(200, 200, 200) !important;
     /*border-bottom-color: rgb(200, 200, 200);*/
     border-left-color: rgb(200, 200, 200) !important;
+}
+@media (max-width: 900px) {
+    
+    table thead tr th:nth-child(3) {
+        display: none;
+    }
+    table tbody tr td {
+        width: 70%;
+        max-width: 70%;
+        text-overflow: ellipsis;
+    }
+
+    table tbody tr td:nth-child(3) {
+        display: none;
+    }
+    .panel .panel-heading span .input-group{
+        float: right;
+    }
+}
+@media (max-width: 700px) {
+    
+    table thead tr th:nth-child(2) {
+        display: none;
+    }
+    table thead tr th:nth-child(3) {
+        display: none;
+    }
+    table tbody tr td {
+        width: 70%;
+        max-width: 70%;
+        text-overflow: ellipsis;
+    }
+    table tbody tr td:nth-child(2) {
+        display: none;
+    }
+    table tbody tr td:nth-child(3) {
+        display: none;
+    }
+    .panel .panel-heading span .input-group{
+        float: right;
+    }
+}
+@media (max-width: 475px) {
+    
+    table thead tr th:nth-child(2) {
+        display: none;
+    }
+    table thead tr th:nth-child(3) {
+        display: none;
+    }
+    table thead tr th:nth-child(4) {
+        text-align: center!important;
+    }
+    table tbody tr td {
+        width: 150px;
+        max-width: 150px;
+        text-overflow: ellipsis;
+    }
+    table tbody tr td:nth-child(2) {
+        display: none;
+    }
+    table tbody tr td:nth-child(3) {
+        display: none;
+    }
+    table tbody tr td:nth-child(3) {
+        text-align:center!important;
+    }
+    .panel .panel-heading span .input-group{
+        float: right;
+    }
 }
