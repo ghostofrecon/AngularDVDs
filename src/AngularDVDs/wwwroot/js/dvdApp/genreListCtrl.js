@@ -6,7 +6,7 @@
         .directive("addGenreModal", addGenreModal)
         .controller('genreListCtrl', genreListCtrl);
 
-    genreListCtrl.$inject = ['$scope', "$http", "toastFactory"];
+    genreListCtrl.$inject = ['$scope', "$http", "toastFactory", "usSpinnerService"];
 
     function addGenreModal() {
         return {
@@ -21,9 +21,15 @@
 
     }
 
-    function genreListCtrl($scope, $http, toastFactory) {
+    function genreListCtrl($scope, $http, toastFactory, usSpinnerService) {
         $scope.title = 'genreListCtrl';
         $scope.genres = [];
+        function startSpin() {
+            usSpinnerService.spin('genSpinner');
+        };
+        function stopSpin() {
+            usSpinnerService.stop('genSpinner');
+        };
         $scope.addGenre = function(nGenreName, nGenreDesc) {
             if (nGenreDesc === undefined) {
                 nGenreDesc = " ";
@@ -57,7 +63,8 @@
             });
         }
 
-        $scope.refreshGenres = function() {
+        $scope.refreshGenres = function () {
+            startSpin();
             $scope.genres = [];
             setTimeout(function() {
                     $http.get("api/genres")
@@ -67,6 +74,9 @@
                                     ? a.GENRE_ADDMOD_Datetime > b.GENRE_ADDMOD_Datetime ? -1 : 0
                                     : 1;
                             });
+                            setTimeout(function() {
+                                stopSpin();
+                            }, 300);
                         });
                 },
                 500);

@@ -166,8 +166,8 @@
   , top: '50%'            // center vertically
   , left: '50%'           // center horizontally
   , shadow: false         // Whether to render a shadow
-  , hwaccel: false        // Whether to use hardware acceleration (might be buggy)
-  , position: 'absolute'  // Element positioning
+  , hwaccel: true         // Whether to use hardware acceleration (might be buggy)
+  , position: 'relative'  // Element positioning
   }
 
   /** The constructor */

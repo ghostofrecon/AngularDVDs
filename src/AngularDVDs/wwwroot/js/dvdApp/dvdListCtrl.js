@@ -6,17 +6,10 @@
         .directive("addDvdInline", addDvdInline)
         .controller('dvdListCtrl', dvdListCtrl);
 
-    dvdListCtrl.$inject = ["$scope", "$http", "$compile", "toastFactory"];
+    dvdListCtrl.$inject = ["$scope", "$http", "$compile", "toastFactory", "usSpinnerService"];
 
-    function dvdListCtrl($scope, $http, $compile, toastFactory) {
+    function dvdListCtrl($scope, $http, $compile, toastFactory, usSpinnerService) {
         var self = this;
-        //self.titles = [];
-        //self.querySearch = querySearch;
-        //self.selectedItemChange = selectedItemChange;
-        //self.selectedTextChange = selectedTextChange;
-        //function querySearch(query) {
-        //    var results = query? 
-        //}
         $scope.dvds = [];
         $scope.directors = [];
         $scope.genres = [];
@@ -46,15 +39,21 @@
             DVD_RELEASE_YEAR: new Date().getFullYear(),
             DVD_ADDMOD_Datetime: new Date()
         };
-
+        $scope.spinnerActive = false;
+        function startSpin() {
+                usSpinnerService.spin('dvdSpinner');
+        };
+        function stopSpin() {
+                usSpinnerService.stop('dvdSpinner');
+        };
         $scope.refreshData = function (showToast) {
+            
+            startSpin();
             $scope.dvds = [];
             setTimeout(function() {
                     $http.get("api/directors")
                         .then(function(response) {
-
                             $scope.directors = response.data;
-
                         });
                 },
                 500);
@@ -70,6 +69,10 @@
                 $http.get("api/dvds")
                     .then(function (response) {
                         $scope.dvds = response.data;
+                        setTimeout(function() {
+                            stopSpin();
+                            },
+                            300);
                     });
             }, 500);
             
@@ -78,7 +81,7 @@
             if (showToast !== false) {
                 toastFactory.showToast("info", 3000, "DVD Data Refreshed");
             }
-
+            
         };
         $scope.refreshData(false);
         $scope.removeDVD = function(id) {

@@ -50,35 +50,38 @@
         $scope.start = 0;
         $scope.currentPage = 0;
         $scope.reactivate = function () {
-            $scope.startSpin();
+            startSpin();
             $scope.DirectorsNameList = [];
-            setTimeout(function() {
+            setTimeout(function () {
+                    
                     $http.get("api/directors")
                         .then(function(response) {
                             $scope.DirectorsNameList = response.data
-                                .sort(function(a, b) {
+                                .sort(function (a, b) {
                                     return a.DIRECTOR_ADDMOD_Datetime < b.DIRECTOR_ADDMOD_Datetime
                                         ? 1
                                         : a.DIRECTOR_ADDMOD_Datetime > b.DIRECTOR_ADDMOD_Datetime ? -1 : 0;
+
+                                    
                                 });
+                            setTimeout(function() {
+                                stopSpin();
+                            }, 300);
+                            
                         });
                 },
                 500);
-            $scope.stopSpin();
+            
             toastFactory.showToast("info", 3000, "Directors refreshed");
         };
         $scope.numberOfPages = function() {
             return Math.ceil($scope.DirectorsNameList / 10);
         };
-        $scope.startSpin = function () {
-            if (!$scope.spinneractive) {
-                usSpinnerService.spin('spinner-1');
-            }
+        function startSpin() {
+            usSpinnerService.spin('dirSpinner');
         };
-        $scope.stopSpin = function () {
-            if ($scope.spinneractive) {
-                usSpinnerService.stop('spinner-1');
-            }
+        function stopSpin() {
+            usSpinnerService.stop('dirSpinner');
         };
         $scope.addDirector = function(newDir) {
             if ($scope.DirectorsNameList) {
@@ -112,7 +115,7 @@
         };
 
         function activate() {
-            $scope.startSpin();
+            startSpin();
             $http.get("api/directors").then(function (response) {
                 $scope.DirectorsNameList = response.data
                     .sort(function(a, b) {
@@ -120,9 +123,11 @@
                             ? 1
                             : a.DIRECTOR_ADDMOD_Datetime > b.DIRECTOR_ADDMOD_Datetime ? -1 : 0;
                     });
+                setTimeout(function() {
+                        stopSpin();
+                    },
+                    300);
             });
-
-            $scope.stopSpin();
         }
     }
 
