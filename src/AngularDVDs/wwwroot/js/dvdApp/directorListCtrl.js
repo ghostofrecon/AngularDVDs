@@ -56,14 +56,7 @@
                     
                     $http.get("api/directors")
                         .then(function(response) {
-                            $scope.DirectorsNameList = response.data
-                                .sort(function (a, b) {
-                                    return a.DIRECTOR_ADDMOD_Datetime < b.DIRECTOR_ADDMOD_Datetime
-                                        ? 1
-                                        : a.DIRECTOR_ADDMOD_Datetime > b.DIRECTOR_ADDMOD_Datetime ? -1 : 0;
-
-                                    
-                                });
+                            $scope.DirectorsNameList = sortByAddDate(response.data);
                             setTimeout(function() {
                                 stopSpin();
                             }, 300);
@@ -73,6 +66,9 @@
                 500);
             
             toastFactory.showToast("info", 3000, "Directors refreshed");
+        };
+        $scope.dirIsEmpty = function() {
+            return $scope.DirectorsNameList.length === 0;
         };
         $scope.numberOfPages = function() {
             return Math.ceil($scope.DirectorsNameList / 10);
@@ -113,16 +109,18 @@
                 $scope.dirOrderColumn = col;
             }
         };
-
+        function sortByAddDate(list) {
+            return list.sort(function (a, b) {
+                return a.DIRECTOR_ADDMOD_Datetime < b.DIRECTOR_ADDMOD_Datetime
+                    ? 1
+                    : a.DIRECTOR_ADDMOD_Datetime > b.DIRECTOR_ADDMOD_Datetime ? -1 : 0;
+            });
+        }
         function activate() {
             startSpin();
             $http.get("api/directors").then(function (response) {
-                $scope.DirectorsNameList = response.data
-                    .sort(function(a, b) {
-                        return a.DIRECTOR_ADDMOD_Datetime < b.DIRECTOR_ADDMOD_Datetime
-                            ? 1
-                            : a.DIRECTOR_ADDMOD_Datetime > b.DIRECTOR_ADDMOD_Datetime ? -1 : 0;
-                    });
+                $scope.DirectorsNameList = sortByAddDate(response.data);
+                    
                 setTimeout(function() {
                         stopSpin();
                     },

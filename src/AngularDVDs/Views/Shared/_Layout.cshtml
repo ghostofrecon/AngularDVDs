@@ -2,20 +2,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,height=divice-heigh"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,height=divice-heigh" />
     <title>AngularDVDs - David Campbell</title>
 
     <environment names="Development">
-        <link href="~/lib/select2/select2.css" rel="stylesheet"/>
-        <link href="~/lib/select2-bootstrap-css/select2-bootstrap.css" rel="stylesheet"/>
+        <link href="~/lib/select2/select2.css" rel="stylesheet" />
+        <link href="~/lib/select2-bootstrap-css/select2-bootstrap.css" rel="stylesheet" />
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/select2/select2.js"></script>
-        <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+        <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
         <script src="~/lib/angular/angular.js"></script>
         <script src="~/lib/angular-ui-select2/src/select2.js"></script>
         <script src="~/lib/ng-table/dist/ng-table.js"></script>
-        <link href="~/lib/ng-table/dist/ng-table.css" rel="stylesheet"/>
+        <link href="~/lib/ng-table/dist/ng-table.css" rel="stylesheet" />
         <script src="~/lib/angular-animate/angular-animate.js"></script>
         <script src="~/lib/angular-aria/angular-aria.js"></script>
         <script src="~/lib/angular-messages/angular-messages.js"></script>
@@ -31,21 +31,21 @@
         <script src="~/js/dvdApp/dvdListCtrl.js"></script>
         <script src="~/js/dvdApp/directorListCtrl.js"></script>
         <script src="~/js/dvdApp/genreListCtrl.js"></script>
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
-        <link rel="stylesheet" href="~/css/site.css"/>
-        <link href="~/lib/toastr/toastr.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/lib/toastr/toastr.css" rel="stylesheet" />
 
     </environment>
     <environment names="Staging,Production">
-        <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"/>
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true"/>
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <script src="~/lib/angular/angular.min.js"></script>
         <script src="~/lib/ng-table/dist/ng-table.min.js"></script>
-        <link href="~/lib/ng-table/dist/ng-table.min.css" rel="stylesheet"/>
+        <link href="~/lib/ng-table/dist/ng-table.min.css" rel="stylesheet" />
         <script src="~/lib/angular-animate/angular-animate.min.js"></script>
         <script src="~/lib/angular-resource/angular-resource.min.js"></script>
         <script src="~/lib/angular-route/angular-route.js"></script>
@@ -58,55 +58,53 @@
         <script src="~/js/dvdApp/genreListCtrl.es5.min.js"></script>
 
     </environment>
-    @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
+    @*@Html.ApplicationInsightsJavaScript(TelemetryConfiguration)*@
 </head>
 <body ng-app="dvdApp">
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a asp-controller="Home" asp-action="Index" class="navbar-brand">AngularDVDs</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                @*<li><a asp-controller="Home" asp-action="Index">Home</a></li>*@
-            </ul>
-            @await Html.PartialAsync("_LoginPartial")
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-controller="Home" asp-action="Index" class="navbar-brand">AngularDVDs</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li><a asp-controller="Home" asp-action="Index">Home</a></li>*@
+                </ul>
+                @await Html.PartialAsync("_LoginPartial")
+            </div>
         </div>
     </div>
-</div>
-<div class="container body-content hidden">
-    @RenderBody()
+    <div class="container body-content hidden">
+        @RenderBody()
 
+    </div>
 
+    <environment names="Development">
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
     <footer>
-        <hr/>
-        <p>&copy; 2016 - An ASP.NET Core, MVC, WebAPI2, Bootstrap and Angular Project by David Campbell</p>
+        <hr />
+        &copy; 2016 - An ASP.NET Core, MVC, WebAPI2, Bootstrap and Angular Project by David Campbell
     </footer>
-</div>
-
-<environment names="Development">
-    <script src="~/js/site.js" asp-append-version="true"></script>
-</environment>
-<environment names="Staging,Production">
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-            asp-fallback-test="window.jQuery">
-        
-    </script>
-    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
-            asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
-        
-    </script>
-    <script src="~/js/site.min.js" asp-append-version="true"></script>
-</environment>
-
-@RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)
 </body>
 </html>

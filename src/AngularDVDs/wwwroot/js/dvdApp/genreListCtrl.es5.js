@@ -26,6 +26,10 @@
         function stopSpin() {
             usSpinnerService.stop('genSpinner');
         };
+
+        $scope.genresIsEmpty = function () {
+            return $scope.genres.length === 0;
+        };
         $scope.addGenre = function (nGenreName, nGenreDesc) {
             if (nGenreDesc === undefined) {
                 nGenreDesc = " ";
@@ -49,9 +53,13 @@
 
         function activate() {
             $http.get("api/genres").then(function (response) {
-                $scope.genres = response.data.sort(function (a, b) {
-                    return a.DIRECTOR_ADDMOD_Datetime < b.GENRE_ADDMOD_Datetime ? 1 : a.GENRE_ADDMOD_Datetime > b.GENRE_ADDMOD_Datetime ? -1 : 0;
-                });
+                $scope.genres = orderListByDateAdded(response.data);
+            });
+        }
+
+        function orderListByDateAdded(list) {
+            return list.sort(function (a, b) {
+                return a.DIRECTOR_ADDMOD_Datetime >= b.GENRE_ADDMOD_Datetime ? a.GENRE_ADDMOD_Datetime > b.GENRE_ADDMOD_Datetime ? -1 : 0 : 1;
             });
         }
 
@@ -60,9 +68,7 @@
             $scope.genres = [];
             setTimeout(function () {
                 $http.get("api/genres").then(function (response) {
-                    $scope.genres = response.data.sort(function (a, b) {
-                        return a.DIRECTOR_ADDMOD_Datetime >= b.GENRE_ADDMOD_Datetime ? a.GENRE_ADDMOD_Datetime > b.GENRE_ADDMOD_Datetime ? -1 : 0 : 1;
-                    });
+                    $scope.genres = orderListByDateAdded(response.data);
                     setTimeout(function () {
                         stopSpin();
                     }, 300);

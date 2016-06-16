@@ -83,6 +83,7 @@
             }
             
         };
+        
         $scope.refreshData(false);
         $scope.removeDVD = function(id) {
             $http.delete("api/dvds/" + id)

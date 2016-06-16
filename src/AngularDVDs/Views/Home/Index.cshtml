@@ -14,13 +14,13 @@
                     <span id="dirSpinner" us-spinner="{radius:10, width:5, length: 10,top:'38px', position:'relative'}" spinner-key="dirSpinner"></span>
                 </h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body panel-dir">
                 
 
                 <ul>
                     <li ng-repeat="dir in DirectorsNameList | limitTo: 5 " class="repeated-item">{{dir.DIRECTOR_NAME}}</li>
                 </ul>
-                <span class="glyphicon glyphicon-plus pull-right action-icon text-success" data-toggle="modal" href="#addDirectorModal"></span>
+                <span ng-hide="dirIsEmpty()" class="glyphicon glyphicon-plus pull-right action-icon text-success" data-toggle="modal" href="#addDirectorModal"></span>
             </div>
 
             <div add-director-modal=""></div>
@@ -36,11 +36,11 @@
                     <span id="genSpinner" us-spinner="{radius:10, width:5, length: 10,top:'38px', position:'relative'}" spinner-key="genSpinner"></span>
                 </h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body panel-gen">
                 <ul>
-                    <li ng-repeat="gen in genres|limitTo:5" class="repeated-item">{{gen.GENRE_NAME}}</li>
+                    <li ng-repeat="gen in genres|limitTo:5" class="repeated-item" title="{{gen.GENRE_DESC}}">{{gen.GENRE_NAME}}</li>
                 </ul>
-                <span class="glyphicon glyphicon-plus pull-right action-icon text-success" data-toggle="modal" href="#addGenreModal"></span>
+                <span ng-hide="genresIsEmpty()" class="glyphicon glyphicon-plus pull-right action-icon text-success" data-toggle="modal" href="#addGenreModal"></span>
                 <add-genre-modal></add-genre-modal>
                 @* full genre list modal *@
             </div>
@@ -51,17 +51,17 @@
     <div class="col-lg-9">
         <div class="panel panel-primary" ng-controller="dvdListCtrl">
             <div class="panel-heading">
-                <h3 class="panel-title form-inline">
+                <h3 class="panel-title form-inline dvd-list-title">
                     DVD List <span class="input-group" style="margin-left: 20px">
                         <span class="input-group-addon stdAddonWidth" id="Filter-Addon">Filter</span>
                         <input type="text" class="form-control" placeholder="Title" aria-describedby="Filter-Addon" ng-model="dvdSearch"></span>
-                    <span class="glyphicon glyphicon-refresh action-icon pull-right" ng-click="refreshData()"></span>
-                    <span id="dvdSpinner" us-spinner="{radius:10, width:5, length: 14, top:'88px', position:'relative'}" spinner-key="dvdSpinner"></span>
+                    <span class="glyphicon glyphicon-refresh action-icon pull-right dvd-refresh-icon" ng-click="refreshData()"></span>
+                    <span id="dvdSpinner" us-spinner="{radius:10, width:5, length: 14, top:'40px', position:'relative'}" spinner-key="dvdSpinner"></span>
                 </h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body panel-dvd">
                 
-                <table class="table table-condensed table-stripped table-hover">
+                <table class="table table-condensed table-stripped table-hover" ng-hide="dvdsIsEmpty()">
                     <thead>
                     <tr>
                         <th class="action-icon" ng-click="orderTableBy('DVD_TITLE')">Title <span class="glyphicon glyphicon-arrow-up" ng-show="orderColumn === 'DVD_TITLE'"></span><span class="glyphicon glyphicon-arrow-down" ng-show="orderColumn === '-DVD_TITLE'"></span></th>

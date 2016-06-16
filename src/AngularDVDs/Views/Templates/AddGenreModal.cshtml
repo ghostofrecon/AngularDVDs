@@ -1,28 +1,27 @@
-﻿@using System.IO
-<div class="modal fade" id="addGenreModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Add Genre</h4>
-            </div>
-            <div class="modal-body">
-                <div class="input-group">
-                    <div class="input-group">
-                        <span class="input-group-addon stdAddonWidth" id="genName-addOn">Name</span>
-                        <input type="text" class="form-control" placeholder="Genre Name" aria-describedby="genName-addOn" ng-model="genToAdd" data-toggle="popover" data-trigger="focus" data-content="Genre exists in database." id="newGenreNameInput">
-
-
+﻿<div>
+    <div id="addGenreModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addDirectorModalLabel">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-margin">
+                    <div id="addDirectorModalLabel" class="modal-title">
+                        Add Genre <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    &nbsp;
+
                     <div class="input-group">
-                        <span class="input-group-addon stdAddonWidth" id="genDesc-addOn">Desc</span>
-                        <input type="text" class="form-control" placeholder="Description" aria-describedby="genDesc-addOn" ng-model="descToAdd" data-toggle="popover" data-trigger="focus" data-content="" id="newGenreDescInput">
+                        <div class="input-group modal-margin">
+                            <span class="input-group-addon stdAddonWidth" id="genName-addOn">Name</span>
+                            <input type="text" class="form-control" placeholder="Genre Name" aria-describedby="genName-addOn" ng-model="genToAdd" data-toggle="popover" data-trigger="focus" data-content="Genre exists in database." id="newGenreNameInput">
+                        </div>
+                        <div class="input-group modal-margin">
+                            <span class="input-group-addon stdAddonWidth" id="genDesc-addOn">Desc</span>
+                            <input type="text" class="form-control" placeholder="Description" aria-describedby="genDesc-addOn" ng-model="descToAdd" data-toggle="popover" data-trigger="focus" data-content="" id="newGenreDescInput">
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" ng-click="addGenre(genToAdd, descToAdd)">Save changes</button>
+
+                    <div class="form-inline modal-margin">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="addGenre(genToAdd, descToAdd)">Add</button>
+                    </div>
                 </div>
             </div>
         </div>

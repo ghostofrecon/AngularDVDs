@@ -79,6 +79,7 @@
                 toastFactory.showToast("info", 3000, "DVD Data Refreshed");
             }
         };
+
         $scope.refreshData(false);
         $scope.removeDVD = function (id) {
             $http['delete']("api/dvds/" + id).then(function (response) {
