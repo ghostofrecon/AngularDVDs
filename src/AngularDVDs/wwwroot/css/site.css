@@ -1,10 +1,11 @@
 ﻿html,body {
  height:100%;
+
 }
 footer {
     width: 100%;
     height: 100px;
-    position: absolute;
+    /*position: absolute;*/
     bottom: 0;
     left: 0;
     text-align: center;
@@ -269,3 +270,27 @@ input {
     display: table-cell;
     vertical-align: middle;
 }*/
+table > tbody > tr > td {
+    -moz-text-overflow: ellipsis-word;
+    -ms-text-overflow: ellipsis-word;
+    -o-text-overflow: ellipsis-word;
+    text-overflow: ellipsis-word;
+}
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    -moz-text-overflow: ellipsis-word;
+    -o-text-overflow: ellipsis-word;
+    -ms-text-overflow: ellipsis-word;
+    text-overflow: ellipsis-word;
+}
+.select2-container a{
+    height: 100% !important;
+}
+.select2-dropdown-open > a{
+    border-color: #c8c8c8 !important;
+    border-top-color: rgb(200, 200, 200) !important;
+    border-right-color: rgb(200, 200, 200) !important;
+    /*border-bottom-color: rgb(200, 200, 200);*/
+    border-left-color: rgb(200, 200, 200) !important;
+}
