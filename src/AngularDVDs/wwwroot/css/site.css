@@ -1,4 +1,7 @@
-﻿body {
+﻿html,body {
+ height:100%;
+}
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -50,6 +53,10 @@ textarea {
 
     .action-icon:hover {
         color: darkgray;
+    }
+    .action-icon:active {
+        -ms-text-shadow:1px -1px 0 #272b30;
+        text-shadow:1px -1px 0 #272b30;
     }
 
 .release-date {
